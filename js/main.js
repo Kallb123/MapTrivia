@@ -17,6 +17,7 @@ let userPoint = null;
 let answerPoint = null;
 let comparisonLine = null;
 let previousQuestions = [];
+let quizType = '';
 
 // initialize the map on the "map" div with a given center and zoom
 const map = L.map('map', {
@@ -71,10 +72,10 @@ function switchMapType(type) {
 }
 
 function pickRandomQuestion() {
-  let filteredQuestions = questions.filter((item) => !previousQuestions.includes(item.id));
+  let filteredQuestions = questions.filter((item) => !previousQuestions.includes(item.id) && item.type === quizType);
   if (filteredQuestions.length === 0) {
-    filteredQuestions = questions;
     previousQuestions = [];
+    filteredQuestions = questions.filter((item) => !previousQuestions.includes(item.id) && item.type === quizType);
   }
   const randIndex = math.randomInt(filteredQuestions.length);
   const randQuestion = filteredQuestions[randIndex];
@@ -102,7 +103,7 @@ function askQuestion() {
   const questionObj = pickRandomQuestion();
   currentQuestion = questionObj;
   questionEl.text(currentQuestion.question).removeClass('hidden');
-  switchMapType(currentQuestion.mapType);
+  // switchMapType(currentQuestion.mapType);
   waitingForAnswer = true;
 }
 
@@ -111,15 +112,46 @@ function startGame() {
   askQuestion();
 }
 
+function quizTypeSelected() {
+  $('#startSelect').addClass('hidden');
+  startGame();
+}
+
+function difficultySelected() {
+  $('#difficultySelect').addClass('hidden');
+
+  questionTypes.forEach((item) => {
+    $('#startSelect').append(`<a href="#start" id="${item.id}" class="startSelector bg-gray-300 mt-2 mr-2 p-2 rounded">${item.name}</a>`);
+  });
+
+  $('#startSelect a').click((e) => {
+    quizType = $(e.target).attr('id');
+    quizTypeSelected();
+  });
+  $('#startSelect').removeClass('hidden');
+}
+
 $(() => {
   console.log('Ready!');
-  console.log(pickRandomQuestion());
+  // console.log(pickRandomQuestion());
 
   $('#start').click((e) => {
     e.preventDefault();
     startGame();
     $(e.target).remove();
   });
+
+  $('#easy').click((e) => {
+    e.preventDefault();
+    switchToStreet();
+    difficultySelected();
+  });
+  $('#hard').click((e) => {
+    e.preventDefault();
+    switchToSat();
+    difficultySelected();
+  });
+
   $('#next').click((e) => {
     e.preventDefault();
     askQuestion();

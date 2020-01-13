@@ -27,7 +27,11 @@
   <div id="map" class="w-full h-screen"></div>
 
   <h1 class="absolute top-0">Map Trivia</h1>
-  <a href="#start" id="start" class="absolute top-0 right-0 bg-gray-300 mt-2 mr-2 p-2 rounded">Start</a>
+  <div id="difficultySelect" class="absolute top-0 right-0 mt-2 mr-2 flex flex-col">
+    <a href="#easy" id="easy" class="bg-gray-300 mt-2 mr-2 p-2 rounded">Easy</a>
+    <a href="#hard" id="hard" class="bg-gray-300 mt-2 mr-2 p-2 rounded">Hard</a>
+  </div>
+  <div id="startSelect" class="hidden absolute top-0 right-0 mt-2 mr-2 flex flex-col"></div>
   <span id="question" class="hidden absolute top-0 right-0 mt-2 mr-2 bg-white p-2 rounded max-w-sm"></span>
   <a href="#next" id="next" class="hidden absolute top-0 right-0 mt-2 mr-2 bg-white p-2 rounded max-w-sm">Next Question</a>
   <div class="absolute bottom-0 left-0 mb-2 ml-2 flex flex-col">

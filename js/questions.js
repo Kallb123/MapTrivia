@@ -1,8 +1,24 @@
+const questionTypes = [
+  {
+    id: 'trivia',
+    name: 'Trivia',
+  },
+  {
+    id: 'cities',
+    name: 'Cities of the World',
+  },
+  {
+    id: 'landmarks',
+    name: 'Landmarks',
+  },
+];
+
 const questions = [
   {
     id: 0,
     question: 'Where is the Leaning Tower of Pisa?',
     mapType: 'street',
+    type: 'landmarks',
     answers: [
       {
         type: 'exact',
@@ -15,6 +31,7 @@ const questions = [
     id: 1,
     question: 'Where was The Titanic\'s wreckage found?',
     mapType: 'sat',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
@@ -27,6 +44,7 @@ const questions = [
     id: 2,
     question: 'Where is Machu Picchu?',
     mapType: 'sat',
+    type: 'landmarks',
     answers: [
       {
         type: 'exact',
@@ -39,6 +57,7 @@ const questions = [
     id: 3,
     question: 'Where would you have found Checkpoint Charlie?',
     mapType: 'sat',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
@@ -51,6 +70,7 @@ const questions = [
     id: 4,
     question: 'Where was the Battle of Hastings fought?',
     mapType: 'street',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
@@ -63,6 +83,7 @@ const questions = [
     id: 4,
     question: 'Where was the Battle of Gettysburg fought?',
     mapType: 'sat',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
@@ -75,6 +96,7 @@ const questions = [
     id: 5,
     question: 'Where is Mount Kilimanjaro?',
     mapType: 'sat',
+    type: 'landmarks',
     answers: [
       {
         type: 'exact',
@@ -87,6 +109,7 @@ const questions = [
     id: 6,
     question: 'Where is John F. Kennedy buried?',
     mapType: 'sat',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
@@ -99,11 +122,38 @@ const questions = [
     id: 7,
     question: 'Where is Easter Island?',
     mapType: 'sat',
+    type: 'trivia',
     answers: [
       {
         type: 'exact',
         lat: -27.1127,
         lng: -109.3497,
+      },
+    ],
+  },
+  {
+    id: 8,
+    question: 'Where is London?',
+    mapType: 'sat',
+    type: 'cities',
+    answers: [
+      {
+        type: 'exact',
+        lat: 51.5074,
+        lng: -0.1278,
+      },
+    ],
+  },
+  {
+    id: 9,
+    question: 'Where is Rio De Janeiro?',
+    mapType: 'sat',
+    type: 'cities',
+    answers: [
+      {
+        type: 'exact',
+        lat: -22.9068,
+        lng: -43.1729,
       },
     ],
   },
