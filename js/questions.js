@@ -157,4 +157,17 @@ const questions = [
       },
     ],
   },
+  {
+    id: 10,
+    question: 'Where is Beijing?',
+    mapType: 'sat',
+    type: 'cities',
+    answers: [
+      {
+        type: 'exact',
+        lat: 39.9042,
+        lng: 116.4074,
+      },
+    ],
+  },
 ];
