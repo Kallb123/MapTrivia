@@ -1,3 +1,7 @@
+#map {
+  cursor: pointer;
+}
+
 #question {
   z-index: 999;
 }
