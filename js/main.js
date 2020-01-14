@@ -159,6 +159,7 @@ function difficultySelected() {
   });
 
   $('#startSelect a').click((e) => {
+    e.preventDefault();
     quizType = $(e.target).attr('id');
     quizTypeSelected();
   });
