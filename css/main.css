@@ -13,3 +13,17 @@
 #startSelect {
   z-index: 999;
 }
+
+#emojiContainer {
+  font-size: 2em;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+}
+
+.overEmoji {
+  opacity: 1;
+  position: absolute;
+}

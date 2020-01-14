@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 const MAX_POINTS = 100; // Maximum awardable points if within threshold
 const MAX_POINTS_THRESHOLD = 100000; // Meters
-const MIN_POINTS_THRESHOLD = 5000000; // Meters
+const MIN_POINTS_THRESHOLD = 2500000; // Meters
+const MARKER_WIDTH = 40;
+const MARKER_HEIGHT = 40;
+const EMOJI_ANIMATE_TIME = 1500;
+const EMOJI_ANIMATE_DISTANCE = 200;
 
 const questionEl = $('#question');
 const nextEl = $('#next');
@@ -16,6 +20,8 @@ let totalPoints = 0;
 let userPoint = null;
 let answerPoint = null;
 let comparisonLine = null;
+let answerMax = null;
+let answerMin = null;
 let previousQuestions = [];
 let quizType = '';
 
@@ -28,10 +34,32 @@ const map = L.map('map', {
   noWrap: true,
 });
 
+const greenIcon = L.icon({
+  iconUrl: 'img/markergreen.png',
+  shadowUrl: 'img/markershadow.png',
+
+  iconSize: [MARKER_WIDTH, MARKER_HEIGHT], // size of the icon
+  shadowSize: [MARKER_WIDTH, MARKER_HEIGHT], // size of the shadow
+  iconAnchor: [Math.round(MARKER_WIDTH / 2), MARKER_HEIGHT], // point of the icon which will correspond to marker's location
+  shadowAnchor: [13, MARKER_HEIGHT], // the same for the shadow
+  popupAnchor: [Math.round(MARKER_WIDTH / 2), 0], // point from which the popup should open relative to the iconAnchor
+});
+
+const blueIcon = L.icon({
+  iconUrl: 'img/markerblue.png',
+  shadowUrl: 'img/markershadow.png',
+
+  iconSize: [MARKER_WIDTH, MARKER_HEIGHT], // size of the icon
+  shadowSize: [MARKER_WIDTH, MARKER_HEIGHT], // size of the shadow
+  iconAnchor: [Math.round(MARKER_WIDTH / 2), MARKER_HEIGHT], // point of the icon which will correspond to marker's location
+  shadowAnchor: [13, MARKER_HEIGHT], // the same for the shadow
+  popupAnchor: [Math.round(MARKER_WIDTH / 2), 0], // point from which the popup should open relative to the iconAnchor
+});
+
 const streetLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 4,
-  minZoom: 1,
+  minZoom: 2,
   id: 'mapbox/streets-v11',
   accessToken: 'pk.eyJ1Ijoia2FsbGIxMjMiLCJhIjoiY2s1YjE5dW5hMHNwNjNscGt6OHRyejE1aSJ9.y-DJdkjTP2fo-Foe9qPUyw',
 });
@@ -39,7 +67,7 @@ const streetLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}
 const satLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 4,
-  minZoom: 1,
+  minZoom: 2,
   id: 'mapbox/satellite-v9',
   accessToken: 'pk.eyJ1Ijoia2FsbGIxMjMiLCJhIjoiY2s1YjE5dW5hMHNwNjNscGt6OHRyejE1aSJ9.y-DJdkjTP2fo-Foe9qPUyw',
 });
@@ -92,6 +120,12 @@ function cleanMap() {
   }
   if (comparisonLine) {
     map.removeLayer(comparisonLine);
+  }
+  if (answerMax) {
+    map.removeLayer(answerMax);
+  }
+  if (answerMin) {
+    map.removeLayer(answerMin);
   }
 }
 
@@ -159,11 +193,29 @@ $(() => {
 });
 
 function drawComparison(answer, target) {
-  userPoint = L.marker(answer);
+  userPoint = L.marker(answer, { icon: blueIcon });
   userPoint.addTo(map);
-  answerPoint = L.marker(target);
+  answerPoint = L.marker(target, { icon: greenIcon });
   answerPoint.addTo(map);
-  comparisonLine = L.polyline([answer, target], { color: 'red' }).addTo(map);
+  answerMin = L.circle(target, {
+    radius: MIN_POINTS_THRESHOLD,
+    fillColor: '#0095ff',
+    fillOpacity: 0.2,
+    opacity: 0,
+  });
+  answerMin.addTo(map);
+  answerMax = L.circle(target, {
+    radius: MAX_POINTS_THRESHOLD,
+    fillColor: '#4ebd00',
+    fillOpacity: 0.5,
+    opacity: 0,
+  });
+  answerMax.addTo(map);
+  comparisonLine = L.polyline([answer, target], {
+    color: '#333',
+    dashArray: '5, 10',
+    opacity: 0.75,
+  }).addTo(map);
 }
 
 function checkAnswer(userAnswer) {
@@ -208,7 +260,33 @@ function answered() {
   nextEl.removeClass('hidden');
 }
 
-function answerAttemped(latlng) {
+function celebrateWithEmoji(points, coords) {
+  let emoji = '';
+  if (points >= MAX_POINTS) {
+    // Max points!
+    emoji = '&#128513;';
+  } else if (points > 0) {
+    // Some points
+    emoji = '&#128578;';
+  } else {
+    // No points :/
+    emoji = '&#128553;';
+  }
+  const newEmoji = $(`<div class="overEmoji">${emoji}</div>`);
+  $('#emojiContainer').append(newEmoji);
+  const startLocation = {
+    x: coords.x - Math.round(newEmoji.outerWidth() / 2),
+    y: coords.y - MARKER_HEIGHT,
+  };
+  console.log(newEmoji.outerWidth());
+  newEmoji.offset({ top: startLocation.y, left: startLocation.x });
+  newEmoji.animate({ top: startLocation.y - EMOJI_ANIMATE_DISTANCE, opacity: 0 }, EMOJI_ANIMATE_TIME, 'linear', () => {
+    // Animation complete
+    newEmoji.remove();
+  });
+}
+
+function answerAttemped(latlng, screenCoords) {
   console.log('Answer attempted');
   // console.log(latlng);
   questionEl.addClass('hidden');
@@ -222,14 +300,16 @@ function answerAttemped(latlng) {
   totalPoints += points;
   pointsEl.text(`Total points: ${totalPoints}`);
   pointsEl.removeClass('hidden');
+  celebrateWithEmoji(points, screenCoords);
   answered();
   // askQuestion();
 }
 
 function onMapClick(e) {
   console.log(`You clicked the map at ${e.latlng}`);
+  console.log(e);
   if (waitingForAnswer === true) {
-    answerAttemped(e.latlng);
+    answerAttemped(e.latlng, e.containerPoint);
   }
 }
 
