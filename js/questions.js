@@ -58,6 +58,7 @@ const questions = [
     question: 'Where would you have found Checkpoint Charlie?',
     mapType: 'sat',
     type: 'trivia',
+    textAnswer: 'It was the most famous checkpoint through the Berlin Wall',
     answers: [
       {
         type: 'exact',
@@ -71,6 +72,7 @@ const questions = [
     question: 'Where was the Battle of Hastings fought?',
     mapType: 'street',
     type: 'trivia',
+    textAnswer: 'Fought in 1066 between William The Conqueror and King Harold Godwinson',
     answers: [
       {
         type: 'exact',
@@ -80,10 +82,11 @@ const questions = [
     ],
   },
   {
-    id: 4,
+    id: 8,
     question: 'Where was the Battle of Gettysburg fought?',
     mapType: 'sat',
     type: 'trivia',
+    textAnswer: 'Fought in 1863, considered the turning point of the American Civil War',
     answers: [
       {
         type: 'exact',
@@ -110,6 +113,7 @@ const questions = [
     question: 'Where is John F. Kennedy buried?',
     mapType: 'sat',
     type: 'trivia',
+    textAnswer: 'The former president is buried in Arlington National Cemetery',
     answers: [
       {
         type: 'exact',

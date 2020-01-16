@@ -2,32 +2,29 @@
   cursor: pointer;
 }
 
-#question {
-  z-index: 999;
-}
-#next {
-  z-index: 999;
-}
-#result {
-  z-index: 999;
-}
-#points {
-  z-index: 999;
-}
-#startSelect {
-  z-index: 999;
-}
-
 #emojiContainer {
   font-size: 2em;
   left: 0;
   pointer-events: none;
   position: absolute;
   top: 0;
-  z-index: 9999;
 }
 
 .overEmoji {
   opacity: 1;
   position: absolute;
+}
+
+#textAnswer {
+  opacity: 1;
+  top: 0;
+  transition: all 250ms;
+  visibility: visible;
+}
+
+#textAnswer.hide {
+  opacity: 0;
+  pointer-events: none;
+  top: -200px;
+  visibility: hidden;
 }

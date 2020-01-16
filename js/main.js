@@ -11,6 +11,7 @@ const questionEl = $('#question');
 const nextEl = $('#next');
 const resultEl = $('#result');
 const pointsEl = $('#points');
+const textAnswerEl = $('#textAnswer');
 
 // State management
 let waitingForAnswer = false;
@@ -133,6 +134,8 @@ function askQuestion() {
   console.log('Asking question');
   cleanMap();
   nextEl.addClass('hidden');
+  textAnswerEl.addClass('hide');
+  // textAnswerEl.css({ opacity: 0 });
   resultEl.addClass('hidden');
   const questionObj = pickRandomQuestion();
   currentQuestion = questionObj;
@@ -287,6 +290,15 @@ function celebrateWithEmoji(points, coords) {
   });
 }
 
+function showTextAnswer() {
+  if (currentQuestion.textAnswer) {
+    // textAnswerEl.offset({ top: -100 });
+    textAnswerEl.text(currentQuestion.textAnswer);
+    textAnswerEl.removeClass('hide');
+    // textAnswerEl.animate({ top: 0 }, 250, 'swing');
+  }
+}
+
 function answerAttemped(latlng, screenCoords) {
   console.log('Answer attempted');
   // console.log(latlng);
@@ -302,6 +314,7 @@ function answerAttemped(latlng, screenCoords) {
   pointsEl.text(`Total points: ${totalPoints}`);
   pointsEl.removeClass('hidden');
   celebrateWithEmoji(points, screenCoords);
+  showTextAnswer();
   answered();
   // askQuestion();
 }
