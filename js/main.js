@@ -25,6 +25,9 @@ let answerMax = null;
 let answerMin = null;
 let previousQuestions = [];
 let quizType = '';
+let countdownMax = 10; // Seconds
+let countdown = 0;
+let countdownTimeout = null;
 
 // initialize the map on the "map" div with a given center and zoom
 const map = L.map('map', {
@@ -130,6 +133,75 @@ function cleanMap() {
   }
 }
 
+function showTextAnswer() {
+  if (currentQuestion.textAnswer) {
+    // textAnswerEl.offset({ top: -100 });
+    textAnswerEl.text(currentQuestion.textAnswer);
+    textAnswerEl.removeClass('hide');
+    // textAnswerEl.animate({ top: 0 }, 250, 'swing');
+  }
+}
+
+function drawComparison(userAnswer, target) {
+  answerPoint = L.marker(target, { icon: greenIcon });
+  answerPoint.addTo(map);
+  answerMin = L.circle(target, {
+    radius: MIN_POINTS_THRESHOLD,
+    fillColor: '#0095ff',
+    fillOpacity: 0.2,
+    opacity: 0,
+  });
+  answerMin.addTo(map);
+  answerMax = L.circle(target, {
+    radius: MAX_POINTS_THRESHOLD,
+    fillColor: '#4ebd00',
+    fillOpacity: 0.5,
+    opacity: 0,
+  });
+  answerMax.addTo(map);
+  if (userAnswer !== null) {
+    userPoint = L.marker(userAnswer, { icon: blueIcon });
+    userPoint.addTo(map);
+    comparisonLine = L.polyline([userAnswer, target], {
+      color: '#333',
+      dashArray: '5, 10',
+      opacity: 0.75,
+    });
+    comparisonLine.addTo(map);
+  }
+}
+
+function answered() {
+  questionEl.addClass('hidden');
+  nextEl.removeClass('hidden');
+}
+
+const countdownEl = $('#countdown');
+const countdownWrapperEl = $('#countdownWrapper');
+function countdownComplete() {
+  // Incorrect answer
+  if (countdownTimeout) clearTimeout(countdownTimeout);
+  waitingForAnswer = false;
+  countdownWrapperEl.addClass('out');
+  const answer = currentQuestion.estimate || currentQuestion.answers[0];
+  const answerTarget = new L.LatLng(answer.lat, answer.lng);
+  drawComparison(null, answerTarget);
+  showTextAnswer();
+  answered();
+}
+
+function countdownStop() {
+  countdownEl.stop();
+  if (countdownTimeout) clearTimeout(countdownTimeout);
+}
+
+function startCountdown() {
+  countdownEl.css({ top: 0 });
+  countdownEl.animate({ top: '100%' }, countdownMax * 1000, 'linear');
+  countdownWrapperEl.removeClass('hide out');
+  countdownTimeout = setTimeout(countdownComplete, countdownMax * 1000);
+}
+
 function askQuestion() {
   console.log('Asking question');
   cleanMap();
@@ -142,6 +214,7 @@ function askQuestion() {
   questionEl.text(currentQuestion.question).removeClass('hidden');
   // switchMapType(currentQuestion.mapType);
   waitingForAnswer = true;
+  startCountdown();
 }
 
 function startGame() {
@@ -196,32 +269,6 @@ $(() => {
   });
 });
 
-function drawComparison(answer, target) {
-  userPoint = L.marker(answer, { icon: blueIcon });
-  userPoint.addTo(map);
-  answerPoint = L.marker(target, { icon: greenIcon });
-  answerPoint.addTo(map);
-  answerMin = L.circle(target, {
-    radius: MIN_POINTS_THRESHOLD,
-    fillColor: '#0095ff',
-    fillOpacity: 0.2,
-    opacity: 0,
-  });
-  answerMin.addTo(map);
-  answerMax = L.circle(target, {
-    radius: MAX_POINTS_THRESHOLD,
-    fillColor: '#4ebd00',
-    fillOpacity: 0.5,
-    opacity: 0,
-  });
-  answerMax.addTo(map);
-  comparisonLine = L.polyline([answer, target], {
-    color: '#333',
-    dashArray: '5, 10',
-    opacity: 0.75,
-  }).addTo(map);
-}
-
 function checkAnswer(userAnswer) {
   console.log('Checking answer');
   const { answers } = currentQuestion;
@@ -260,10 +307,6 @@ function distanceToPoints(distance) {
     / (MIN_POINTS_THRESHOLD - MAX_POINTS_THRESHOLD)));
 }
 
-function answered() {
-  nextEl.removeClass('hidden');
-}
-
 function celebrateWithEmoji(points, coords) {
   let emoji = '';
   if (points >= MAX_POINTS) {
@@ -290,19 +333,10 @@ function celebrateWithEmoji(points, coords) {
   });
 }
 
-function showTextAnswer() {
-  if (currentQuestion.textAnswer) {
-    // textAnswerEl.offset({ top: -100 });
-    textAnswerEl.text(currentQuestion.textAnswer);
-    textAnswerEl.removeClass('hide');
-    // textAnswerEl.animate({ top: 0 }, 250, 'swing');
-  }
-}
-
 function answerAttemped(latlng, screenCoords) {
   console.log('Answer attempted');
   // console.log(latlng);
-  questionEl.addClass('hidden');
+  countdownStop();
   waitingForAnswer = false;
   const result = Math.floor(checkAnswer(latlng));
   // console.log(result);

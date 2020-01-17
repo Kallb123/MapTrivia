@@ -1,3 +1,5 @@
+
+
 #map {
   cursor: pointer;
 }
@@ -27,4 +29,23 @@
   pointer-events: none;
   top: -200px;
   visibility: hidden;
+}
+
+#countdownWrapper {
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  right: 0;
+  transition: all 250ms;
+  visibility: visible;
+}
+
+#countdownWrapper.hide {
+  opacity: 0;
+  pointer-events: none;
+  right: -200px;
+  visibility: hidden;
+}
+
+#countdownWrapper.out {
+  background: rgba(255, 0, 0, 0.5);
 }
