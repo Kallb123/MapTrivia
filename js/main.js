@@ -10,6 +10,7 @@ const EMOJI_ANIMATE_DISTANCE = 200;
 const questionEl = $('#question');
 const nextEl = $('#next');
 const resultEl = $('#result');
+const resultDistanceEl = $('#resultDistance');
 const pointsEl = $('#points');
 const textAnswerEl = $('#textAnswer');
 
@@ -26,7 +27,6 @@ let answerMin = null;
 let previousQuestions = [];
 let quizType = '';
 let countdownMax = 10; // Seconds
-let countdown = 0;
 let countdownTimeout = null;
 
 // initialize the map on the "map" div with a given center and zoom
@@ -209,6 +209,7 @@ function askQuestion() {
   textAnswerEl.addClass('hide');
   // textAnswerEl.css({ opacity: 0 });
   resultEl.addClass('hidden');
+  resultDistanceEl.addClass('hidden');
   const questionObj = pickRandomQuestion();
   currentQuestion = questionObj;
   questionEl.text(currentQuestion.question).removeClass('hidden');
@@ -338,10 +339,12 @@ function answerAttemped(latlng, screenCoords) {
   // console.log(latlng);
   countdownStop();
   waitingForAnswer = false;
-  const result = Math.floor(checkAnswer(latlng));
-  // console.log(result);
-  const points = distanceToPoints(result);
-  console.log(`Distance: ${result}, Points: ${points}`);
+  const distance = Math.floor(checkAnswer(latlng));
+  // console.log(distance);
+  const points = distanceToPoints(distance);
+  console.log(`Distance: ${distance}, Points: ${points}`);
+  resultDistanceEl.text(`You were ${Math.round(distance / 1000)}km away`);
+  resultDistanceEl.removeClass('hidden');
   resultEl.text(`You just scored ${points} points`);
   resultEl.removeClass('hidden');
   totalPoints += points;
