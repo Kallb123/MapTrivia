@@ -6,6 +6,9 @@ const MARKER_WIDTH = 40;
 const MARKER_HEIGHT = 40;
 const EMOJI_ANIMATE_TIME = 1500;
 const EMOJI_ANIMATE_DISTANCE = 200;
+const EMOJIS_GREAT = ['&#128513;', '&#58130;'];
+const EMOJIS_GOOD = ['&#128578;', '&#128077;'];
+const EMOJIS_BAD = ['&#128553;', '&#128169;'];
 
 const questionEl = $('#question');
 const nextEl = $('#next');
@@ -312,13 +315,13 @@ function celebrateWithEmoji(points, coords) {
   let emoji = '';
   if (points >= MAX_POINTS) {
     // Max points!
-    emoji = '&#128513;';
+    emoji = EMOJIS_GREAT[math.randomInt(EMOJIS_GREAT.length)];
   } else if (points > 0) {
     // Some points
-    emoji = '&#128578;';
+    emoji = EMOJIS_GOOD[math.randomInt(EMOJIS_GOOD.length)];
   } else {
     // No points :/
-    emoji = '&#128553;';
+    emoji = EMOJIS_BAD[math.randomInt(EMOJIS_BAD.length)];
   }
   const newEmoji = $(`<div class="overEmoji">${emoji}</div>`);
   $('#emojiContainer').append(newEmoji);
