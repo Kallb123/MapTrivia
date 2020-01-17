@@ -11,6 +11,10 @@ const questionTypes = [
     id: 'landmarks',
     name: 'Landmarks',
   },
+  {
+    id: 'test',
+    name: 'Test',
+  },
 ];
 
 const questions = [
@@ -82,20 +86,6 @@ const questions = [
     ],
   },
   {
-    id: 8,
-    question: 'Where was the Battle of Gettysburg fought?',
-    mapType: 'sat',
-    type: 'trivia',
-    textAnswer: 'Fought in 1863, considered the turning point of the American Civil War',
-    answers: [
-      {
-        type: 'exact',
-        lat: 39.8180,
-        lng: -77.2325,
-      },
-    ],
-  },
-  {
     id: 5,
     question: 'Where is Mount Kilimanjaro?',
     mapType: 'sat',
@@ -132,6 +122,50 @@ const questions = [
         type: 'exact',
         lat: -27.1127,
         lng: -109.3497,
+      },
+    ],
+  },
+  {
+    id: 8,
+    question: 'Where was the Battle of Gettysburg fought?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Fought in 1863, considered the turning point of the American Civil War',
+    answers: [
+      {
+        type: 'exact',
+        lat: 39.8180,
+        lng: -77.2325,
+      },
+    ],
+  },
+  {
+    id: 9,
+    question: 'Where is the UK?',
+    mapType: 'sat',
+    type: 'test',
+    textAnswer: 'Fought in 1863, considered the turning point of the American Civil War',
+    answers: [
+      {
+        type: 'polygon',
+        corners: [
+          {
+            lat: 49.911616,
+            lng: -6.163449,
+          },
+          {
+            lat: 54.177868,
+            lng: -9.853205,
+          },
+          {
+            lat: 60.853472,
+            lng: -0.795731,
+          },
+          {
+            lat: 51.261913,
+            lng: 1.485379,
+          },
+        ],
       },
     ],
   },
