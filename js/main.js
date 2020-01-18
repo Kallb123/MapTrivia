@@ -301,7 +301,7 @@ function difficultySelected() {
   $('#difficultySelect').addClass('hidden');
 
   questionTypes.forEach((item) => {
-    topicListEl.append(`<a href="#start" id="${item.id}" class="startSelector bg-gray-300 mb-2 p-2 rounded">${item.name}</a>`);
+    topicListEl.append(`<a href="#start" id="${item.id}" class="startSelector bg-gray-300 mb-4 p-2 rounded">${item.name}</a>`);
   });
 
   $('#startSelect a').click((e) => {
