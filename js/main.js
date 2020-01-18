@@ -453,6 +453,7 @@ function celebrateWithEmoji(points, coords) {
     // Animation complete
     newEmoji.remove();
   });
+  return emoji;
 }
 
 function answerAttemped(latlng, screenCoords) {
@@ -464,14 +465,14 @@ function answerAttemped(latlng, screenCoords) {
   // console.log(distance);
   const points = distanceToPoints(distance);
   console.log(`Distance: ${distance}, Points: ${points}`);
-  resultDistanceEl.text(`You were ${Math.round(distance / 1000)}km away`);
+  const emoji = celebrateWithEmoji(points, screenCoords);
+  resultDistanceEl.html(`You were ${Math.round(distance / 1000)}km away`);
   resultDistanceEl.removeClass('hidden');
-  resultEl.text(`You just scored ${points} points`);
+  resultEl.html(`You just scored ${points} points ${emoji}`);
   resultEl.removeClass('hidden');
   totalPoints += points;
   pointsEl.text(`Total points: ${totalPoints}`);
   pointsEl.removeClass('hidden');
-  celebrateWithEmoji(points, screenCoords);
   showTextAnswer();
   answered();
   // askQuestion();
