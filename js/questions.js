@@ -1919,5 +1919,158 @@ const questions = [
     type: 'cities',
     answers: [{ type: 'exact', lat: 40.82, lng: 111.66 }],
   },
-  
+  {
+    id: 261,
+    question: 'Where did Apollo 11 launch from on its monumental mission?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Apollo 11 launched from LC-39 at the Kennedy Space Center. It put Neil Armstrong and Buzz Aldrin on the Moon.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 28.608389,
+        lng: -80.604333,
+      },
+    ],
+  },
+  {
+    id: 262,
+    question: 'Where did the final Space Shuttle mission land in July 2011?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The orbiter Atlantis landed back at the Kennedy Space Center almost 13 days after launch.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 28.615,
+        lng: -80.6945,
+      },
+    ],
+  },
+  {
+    id: 263,
+    question: 'Where did the Sputnik 1 launch from?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The launchpad "Gagarin\'s Start" at Baikonur Cosmodrome is now in modern day Kazakhstan.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 45.920278,
+        lng: 63.342222,
+      },
+    ],
+  },
+  {
+    id: 264,
+    question: 'Where is the Chernobyl Nuclear Facility?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The nuclear disaster at Chernobyl is considered the worst in history.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 51.389167,
+        lng: 30.099444,
+      },
+    ],
+  },
+  {
+    id: 265,
+    question: 'Where was the Battle of Thermopylae fought?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The small Spartan army of 7,000 held the coastal pass against the 100,000 strong Persain army for several days in 480 BC.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 38.796607,
+        lng: 22.536714,
+      },
+    ],
+  },
+  {
+    id: 266,
+    question: 'Where was the Battle of Midway fought?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Considered a turning point in the Pacific Theatre of World War II.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 28.2,
+        lng: -177.35,
+      },
+    ],
+  },
+  {
+    id: 267,
+    question: 'Where was the attack on Pearl Habor?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The attack by Japan resulted in the United States joining World War II.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 21.34927,
+        lng: -157.94397,
+      },
+    ],
+  },
+  {
+    id: 268,
+    question: 'Where is Mount Vesuvius?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Its eruption in AD 79 killed more than 1,000 people. Over 600,000 people still live in the danger zone.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 40.816667,
+        lng: 14.433333,
+      },
+    ],
+  },
+  {
+    id: 269,
+    question: 'Where was the epicentre of the most powerful earthquake every recorded?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The earthquake resulted in tsunamis travelling half way across the world.',
+    answers: [
+      {
+        type: 'exact',
+        lat: -38.24,
+        lng: -73.05,
+      },
+    ],
+  },
+  {
+    id: 270,
+    question: 'Where was the Olympic games that saw the first Fosbury Flop?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Dick Fosbury starting using the now widespread method in 1968 after failing to succeed with existing methods.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 19.433333,
+        lng: -99.133333,
+      },
+    ],
+  },
+  {
+    id: 271,
+    question: 'Where were the 1992 Summer Olympics hosted?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The Unified Team, consisting of several former Soviet republics, won the most Gold medals and total medals.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 41.383333,
+        lng: 2.183333,
+      },
+    ],
+  },
 ];
