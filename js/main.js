@@ -206,7 +206,44 @@ function drawComparison(userAnswer, target) {
   }
 }
 
-function answered() {
+function celebrateWithEmoji(points, coords) {
+  let emoji = '';
+  if (points >= MAX_POINTS) {
+    // Max points!
+    emoji = EMOJIS_GREAT[math.randomInt(EMOJIS_GREAT.length)];
+  } else if (points > 0) {
+    // Some points
+    emoji = EMOJIS_GOOD[math.randomInt(EMOJIS_GOOD.length)];
+  } else {
+    // No points :/
+    emoji = EMOJIS_BAD[math.randomInt(EMOJIS_BAD.length)];
+  }
+  if (coords) {
+    const newEmoji = $(`<div class="overEmoji">${emoji}</div>`);
+    $('#emojiContainer').append(newEmoji);
+    const startLocation = {
+      x: coords.x - Math.round(newEmoji.outerWidth() / 2),
+      y: coords.y - MARKER_HEIGHT,
+    };
+    // console.log(newEmoji.outerWidth());
+    newEmoji.offset({ top: startLocation.y, left: startLocation.x });
+    newEmoji.animate({ top: startLocation.y - EMOJI_ANIMATE_DISTANCE, opacity: 0 }, EMOJI_ANIMATE_TIME, 'linear', () => {
+      // Animation complete
+      newEmoji.remove();
+    });
+  }
+  return emoji;
+}
+
+function answered(points, coords) {
+  const emoji = celebrateWithEmoji(points, coords);
+  resultEl.html(`You just scored ${points} points ${emoji}`);
+  resultEl.removeClass('hidden');
+  totalPoints += points;
+  totalPointsMax += MAX_POINTS;
+  pointsEl.text(`Total points: ${totalPoints}/${totalPointsMax}`);
+  pointsEl.removeClass('hidden');
+  showTextAnswer();
   questionEl.addClass('hidden');
   nextEl.removeClass('hidden');
 }
@@ -219,7 +256,7 @@ function countdownComplete() {
   const answer = currentQuestion.estimate || currentQuestion.answers[0];
   drawComparison(null, answer);
   showTextAnswer();
-  answered();
+  answered(0, null);
 }
 
 function countdownStop() {
@@ -430,33 +467,6 @@ function distanceToPoints(distance) {
     / (MIN_POINTS_THRESHOLD - MAX_POINTS_THRESHOLD)));
 }
 
-function celebrateWithEmoji(points, coords) {
-  let emoji = '';
-  if (points >= MAX_POINTS) {
-    // Max points!
-    emoji = EMOJIS_GREAT[math.randomInt(EMOJIS_GREAT.length)];
-  } else if (points > 0) {
-    // Some points
-    emoji = EMOJIS_GOOD[math.randomInt(EMOJIS_GOOD.length)];
-  } else {
-    // No points :/
-    emoji = EMOJIS_BAD[math.randomInt(EMOJIS_BAD.length)];
-  }
-  const newEmoji = $(`<div class="overEmoji">${emoji}</div>`);
-  $('#emojiContainer').append(newEmoji);
-  const startLocation = {
-    x: coords.x - Math.round(newEmoji.outerWidth() / 2),
-    y: coords.y - MARKER_HEIGHT,
-  };
-  // console.log(newEmoji.outerWidth());
-  newEmoji.offset({ top: startLocation.y, left: startLocation.x });
-  newEmoji.animate({ top: startLocation.y - EMOJI_ANIMATE_DISTANCE, opacity: 0 }, EMOJI_ANIMATE_TIME, 'linear', () => {
-    // Animation complete
-    newEmoji.remove();
-  });
-  return emoji;
-}
-
 function answerAttemped(latlng, screenCoords) {
   console.log('Answer attempted');
   // console.log(latlng);
@@ -466,17 +476,9 @@ function answerAttemped(latlng, screenCoords) {
   // console.log(distance);
   const points = distanceToPoints(distance);
   console.log(`Distance: ${distance}, Points: ${points}`);
-  const emoji = celebrateWithEmoji(points, screenCoords);
   resultDistanceEl.html(`You were ${Math.round(distance / 1000)}km away`);
   resultDistanceEl.removeClass('hidden');
-  resultEl.html(`You just scored ${points} points ${emoji}`);
-  resultEl.removeClass('hidden');
-  totalPoints += points;
-  totalPointsMax += MAX_POINTS;
-  pointsEl.text(`Total points: ${totalPoints}/${totalPointsMax}`);
-  pointsEl.removeClass('hidden');
-  showTextAnswer();
-  answered();
+  answered(points, screenCoords);
   // askQuestion();
 }
 
