@@ -293,6 +293,13 @@ $(() => {
     difficultySelected();
   });
 
+  $('#easy').hover(() => {
+    switchToStreet();
+  });
+  $('#hard').hover(() => {
+    switchToSat();
+  });
+
   $('#next').click((e) => {
     e.preventDefault();
     askQuestion();
