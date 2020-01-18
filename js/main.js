@@ -227,8 +227,8 @@ function countdownStop() {
 }
 
 function startCountdown() {
-  countdownEl.css({ top: 0 });
-  countdownEl.animate({ top: '100%' }, countdownMax * 1000, 'linear');
+  countdownEl.css({ top: 0, backgroundColor: '#fff' });
+  countdownEl.animate({ top: '100%', backgroundColor: '#f00' }, countdownMax * 1000, 'linear');
   countdownWrapperEl.removeClass('hide out');
   countdownTimeout = setTimeout(countdownComplete, countdownMax * 1000);
 }
