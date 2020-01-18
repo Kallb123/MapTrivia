@@ -42,7 +42,15 @@
       </div>
     </div>
   </div>
-  <div id="startSelect" class="hidden absolute top-0 right-0 mt-2 mr-2 flex flex-col"></div>
+  <div id="startSelect" class="hidden absolute top-0 bottom-0 right-0 left-0 m-2 flex flex-col justify-center items-center">
+    <div class="flex flex-col p-4 bg-white rounded">
+      <div class="mb-2">
+        <span class="font-semibold">Choose a Topic!</span>
+      </div>
+      <div id="topicList" class="h-48 max-h-screen overflow-y-auto flex flex-col"></div>
+    </div>
+
+  </div>
   <span id="question" class="hidden absolute top-0 right-0 mt-2 mr-2 bg-white p-2 rounded max-w-sm"></span>
   <div class="absolute z-30 top-0 left-0 right-0 pointer-events-none flex justify-center">
     <span id="textAnswer" class="hide relative bg-white mt-2 p-2 rounded max-w-sm pointer-events-auto opacity-0">Example</span>

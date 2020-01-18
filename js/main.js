@@ -11,6 +11,7 @@ const EMOJIS_GOOD = ['&#128578;', '&#128077;'];
 const EMOJIS_BAD = ['&#128553;', '&#128169;'];
 
 const questionEl = $('#question');
+const topicListEl = $('#topicList');
 const nextEl = $('#next');
 const resultEl = $('#result');
 const resultDistanceEl = $('#resultDistance');
@@ -80,6 +81,7 @@ const satLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x
   id: 'mapbox/satellite-v9',
   accessToken: 'pk.eyJ1Ijoia2FsbGIxMjMiLCJhIjoiY2s1YjE5dW5hMHNwNjNscGt6OHRyejE1aSJ9.y-DJdkjTP2fo-Foe9qPUyw',
 });
+map.addLayer(satLayer);
 
 function switchToSat() {
   map.removeLayer(streetLayer);
@@ -261,7 +263,7 @@ function difficultySelected() {
   $('#difficultySelect').addClass('hidden');
 
   questionTypes.forEach((item) => {
-    $('#startSelect').append(`<a href="#start" id="${item.id}" class="startSelector bg-gray-300 mt-2 mr-2 p-2 rounded">${item.name}</a>`);
+    topicListEl.append(`<a href="#start" id="${item.id}" class="startSelector bg-gray-300 mb-2 p-2 rounded">${item.name}</a>`);
   });
 
   $('#startSelect a').click((e) => {
