@@ -2073,4 +2073,88 @@ const questions = [
       },
     ],
   },
+  {
+    id: 272,
+    question: 'What was the destination of the ferry involved in deadliest peacetime maritime disaster?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The MV Doña Paz collided with the oil tanker MT Vector in 1987 on its way to the Philippine capital of Manila.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 14.599512,
+        lng: 120.984222,
+      },
+    ],
+  },
+  {
+    id: 273,
+    question: 'Where is Krakatoa, the huge volcano that erupted in 1883?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'It is said to have dropped the global temperature by 0.5C.',
+    answers: [
+      {
+        type: 'exact',
+        lat: -6.102,
+        lng: 105.423,
+      },
+    ],
+  },
+  {
+    id: 274,
+    question: 'Where was the Battle of the Bulge?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'It was the largest and bloodiest battle fought by the United States in World War II.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 50.25,
+        lng: 5.666667,
+      },
+    ],
+  },
+  {
+    id: 275,
+    question: 'Where was US President John F. Kennedy when he was assassinated?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'JFK was assassinated while riding a motorcade in Dallas, tTexas.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 32.77903,
+        lng: -96.80867,
+      },
+    ],
+  },
+  {
+    id: 276,
+    question: 'Where was US President Abraham Lincoln when he was assassinated?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'He was the first US president to be assassinated. He was attending a play at Ford\'s Theatre in Washington D.C.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 38.896667,
+        lng: -77.025833,
+      },
+    ],
+  },
+  {
+    id: 277,
+    question: 'Where was the deadliest volcanic eruption in United States history?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'Mount St. Helens\' deadly eruption was in 1980 and caused over $1 billion in damages, in 1980s money.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 46.1912,
+        lng: -122.1944,
+      },
+    ],
+  },
 ];
