@@ -25,6 +25,7 @@ let waitingForAnswer = false;
 let lastMapType = null;
 let currentQuestion = null;
 let totalPoints = 0;
+let totalPointsMax = 0;
 let userPoint = null;
 let answerPoint = null;
 let comparisonLine = null;
@@ -471,7 +472,8 @@ function answerAttemped(latlng, screenCoords) {
   resultEl.html(`You just scored ${points} points ${emoji}`);
   resultEl.removeClass('hidden');
   totalPoints += points;
-  pointsEl.text(`Total points: ${totalPoints}`);
+  totalPointsMax += MAX_POINTS;
+  pointsEl.text(`Total points: ${totalPoints}/${totalPointsMax}`);
   pointsEl.removeClass('hidden');
   showTextAnswer();
   answered();
