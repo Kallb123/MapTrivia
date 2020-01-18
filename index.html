@@ -56,8 +56,11 @@
     <span id="textAnswer" class="hide relative bg-white mt-2 p-2 rounded max-w-sm pointer-events-auto opacity-0">Example</span>
   </div>
   <div class="absolute z-30 top-0 bottom-0 right-0 pointer-events-none flex items-center overflow-hidden">
-    <div id="countdownWrapper" class="hide relative p-2 mr-4 rounded-full overflow-hidden w-6" style="height: 60%;">
-      <div id="countdown" class="absolute bottom-0 left-0 right-0"></div>
+    <div id="countdownSideWrapper" class="hide relative mr-4 w-6" style="height: 60%;">
+      <div id="countdownTimer" class="bg-white rounded-full -mt-8 flex items-center justify-center z-40">0</div>
+      <div id="countdownWrapper" class="absolute top-0 bottom-0 right-0 left-0 rounded-full overflow-hidden">
+        <div id="countdown" class="absolute bottom-0 left-0 right-0 z-30"></div>
+      </div>
     </div>
   </div>
   <a href="#next" id="next" class="hidden absolute top-0 right-0 mt-2 mr-2 bg-white p-2 rounded max-w-sm">Next Question</a>

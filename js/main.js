@@ -9,6 +9,7 @@ const EMOJI_ANIMATE_DISTANCE = 200;
 const EMOJIS_GREAT = ['&#128513;', '&#127881;', '&#127882;'];
 const EMOJIS_GOOD = ['&#128578;', '&#128077;'];
 const EMOJIS_BAD = ['&#128553;', '&#128169;'];
+const COUNTDOWN_INTERVAL = 1000;
 
 const questionEl = $('#question');
 const topicListEl = $('#topicList');
@@ -18,7 +19,9 @@ const resultDistanceEl = $('#resultDistance');
 const pointsEl = $('#points');
 const textAnswerEl = $('#textAnswer');
 const countdownEl = $('#countdown');
+const countdownTimerEl = $('#countdownTimer');
 const countdownWrapperEl = $('#countdownWrapper');
+const countdownSideWrapperEl = $('#countdownSideWrapper');
 
 // State management
 let waitingForAnswer = false;
@@ -34,7 +37,9 @@ let answerMin = null;
 let previousQuestions = [];
 let quizType = '';
 let countdownMax = 10; // Seconds
+let countdownTimer = 0;
 let countdownTimeout = null;
+let countdownInterval = null;
 
 // initialize the map on the "map" div with a given center and zoom
 const map = L.map('map', {
@@ -248,9 +253,18 @@ function answered(points, coords) {
   nextEl.removeClass('hidden');
 }
 
+function countdownIntervalCallback() {
+  countdownTimer -= COUNTDOWN_INTERVAL;
+  if (countdownTimer < 0) countdownTimer = 0;
+  countdownTimerEl.text(Math.round(countdownTimer / 1000));
+  countdownTimerEl.removeClass('hide out');
+}
+
 function countdownComplete() {
   // Incorrect answer
   if (countdownTimeout) clearTimeout(countdownTimeout);
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownIntervalCallback();
   waitingForAnswer = false;
   countdownWrapperEl.addClass('out');
   const answer = currentQuestion.estimate || currentQuestion.answers[0];
@@ -262,13 +276,18 @@ function countdownComplete() {
 function countdownStop() {
   countdownEl.stop();
   if (countdownTimeout) clearTimeout(countdownTimeout);
+  if (countdownInterval) clearInterval(countdownInterval);
 }
 
 function startCountdown() {
   countdownEl.css({ top: 0, backgroundColor: '#fff' });
   countdownEl.animate({ top: '100%', backgroundColor: '#f00' }, countdownMax * 1000, 'linear');
-  countdownWrapperEl.removeClass('hide out');
+  countdownWrapperEl.removeClass('out');
+  countdownSideWrapperEl.removeClass('hide');
   countdownTimeout = setTimeout(countdownComplete, countdownMax * 1000);
+  countdownTimer = countdownMax * 1000 + COUNTDOWN_INTERVAL;
+  countdownIntervalCallback();
+  countdownInterval = setInterval(countdownIntervalCallback, COUNTDOWN_INTERVAL);
 }
 
 function askQuestion() {
