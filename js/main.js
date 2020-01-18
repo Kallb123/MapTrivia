@@ -334,10 +334,10 @@ $(() => {
   });
 
   $('#easy').hover(() => {
-    switchToStreet();
+    switchMapType('street');
   });
   $('#hard').hover(() => {
-    switchToSat();
+    switchMapType('sat');
   });
 
   $('#next').click((e) => {
