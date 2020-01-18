@@ -6,7 +6,7 @@ const MARKER_WIDTH = 40;
 const MARKER_HEIGHT = 40;
 const EMOJI_ANIMATE_TIME = 1500;
 const EMOJI_ANIMATE_DISTANCE = 200;
-const EMOJIS_GREAT = ['&#128513;', '&#58130;'];
+const EMOJIS_GREAT = ['&#128513;', '&#127881;', '&#127882;'];
 const EMOJIS_GOOD = ['&#128578;', '&#128077;'];
 const EMOJIS_BAD = ['&#128553;', '&#128169;'];
 
@@ -214,8 +214,7 @@ function countdownComplete() {
   waitingForAnswer = false;
   countdownWrapperEl.addClass('out');
   const answer = currentQuestion.estimate || currentQuestion.answers[0];
-  const answerTarget = new L.LatLng(answer.lat, answer.lng);
-  drawComparison(null, answerTarget);
+  drawComparison(null, answer);
   showTextAnswer();
   answered();
 }
