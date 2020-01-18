@@ -16,6 +16,8 @@ const resultEl = $('#result');
 const resultDistanceEl = $('#resultDistance');
 const pointsEl = $('#points');
 const textAnswerEl = $('#textAnswer');
+const countdownEl = $('#countdown');
+const countdownWrapperEl = $('#countdownWrapper');
 
 // State management
 let waitingForAnswer = false;
@@ -106,6 +108,16 @@ function switchMapType(type) {
   }
 }
 
+// function pairwise(arr, func) {
+//   for (let i = 0; i < arr.length - 1; i += 1) {
+//     func(arr[i], arr[i + 1]);
+//   }
+// }
+
+// pairwise(arr, function(current, next){
+//   console.log(current, next)
+// })
+
 function pickRandomQuestion() {
   let filteredQuestions = questions.filter((item) => !previousQuestions.includes(item.id) && item.type === quizType);
   if (filteredQuestions.length === 0) {
@@ -146,31 +158,48 @@ function showTextAnswer() {
 }
 
 function drawComparison(userAnswer, target) {
-  answerPoint = L.marker(target, { icon: greenIcon });
-  answerPoint.addTo(map);
-  answerMin = L.circle(target, {
-    radius: MIN_POINTS_THRESHOLD,
-    fillColor: '#0095ff',
-    fillOpacity: 0.2,
-    opacity: 0,
-  });
-  answerMin.addTo(map);
-  answerMax = L.circle(target, {
-    radius: MAX_POINTS_THRESHOLD,
-    fillColor: '#4ebd00',
-    fillOpacity: 0.5,
-    opacity: 0,
-  });
-  answerMax.addTo(map);
+  switch (target.type) {
+    case 'exact': {
+      const targetLL = new L.LatLng(target.lat, target.lng);
+      answerPoint = L.marker(targetLL, { icon: greenIcon });
+      answerPoint.addTo(map);
+      answerMin = L.circle(targetLL, {
+        radius: MIN_POINTS_THRESHOLD,
+        fillColor: '#0095ff',
+        fillOpacity: 0.2,
+        opacity: 0,
+      });
+      answerMin.addTo(map);
+      answerMax = L.circle(targetLL, {
+        radius: MAX_POINTS_THRESHOLD,
+        fillColor: '#4ebd00',
+        fillOpacity: 0.5,
+        opacity: 0,
+      });
+      answerMax.addTo(map);
+      if (userAnswer !== null) {
+        comparisonLine = L.polyline([userAnswer, targetLL], {
+          color: '#333',
+          dashArray: '5, 10',
+          opacity: 0.75,
+        });
+        comparisonLine.addTo(map);
+      }
+      break;
+    }
+    case 'polygon': {
+      // Draw the polygon!
+      answerPoint = new L.Polygon(target.corners, { color: 'green' });
+      answerPoint.addTo(map);
+      break;
+    }
+    default:
+      // Don't render this one!
+      break;
+  }
   if (userAnswer !== null) {
     userPoint = L.marker(userAnswer, { icon: blueIcon });
     userPoint.addTo(map);
-    comparisonLine = L.polyline([userAnswer, target], {
-      color: '#333',
-      dashArray: '5, 10',
-      opacity: 0.75,
-    });
-    comparisonLine.addTo(map);
   }
 }
 
@@ -179,8 +208,6 @@ function answered() {
   nextEl.removeClass('hidden');
 }
 
-const countdownEl = $('#countdown');
-const countdownWrapperEl = $('#countdownWrapper');
 function countdownComplete() {
   // Incorrect answer
   if (countdownTimeout) clearTimeout(countdownTimeout);
@@ -273,11 +300,79 @@ $(() => {
   });
 });
 
+function isPointInsidePolygon(point, polyPoints) {
+  const x = point.lat;
+  const y = point.lng;
+
+  let inside = false;
+  for (let i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
+    const xi = polyPoints[i].lat;
+    const yi = polyPoints[i].lng;
+    const xj = polyPoints[j].lat;
+    const yj = polyPoints[j].lng;
+
+    const intersect = ((yi > y) !== (yj > y))
+        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+
+  return inside;
+}
+
+function vlen(vector) {
+  return Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
+}
+function vsub(v1, v2) {
+  return [v1[0] - v2[0], v1[1] - v2[1]];
+}
+function vscale(vector, factor) {
+  return [vector[0] * factor, vector[1] * factor];
+}
+function vnorm(v) {
+  return [-v[1], v[0]];
+}
+
+// Not really designed to work on a sphere with lat/lng
+// Gives nonsensical answer
+function distanceFromPointToPoly(point, poly) {
+  const dists = $.map(poly, (p1, i) => {
+    const prev = (i === 0 ? poly.length : i) - 1;
+    const p2 = poly[prev];
+    const line = vsub(p2, p1);
+
+    if (vlen(line) === 0) {
+      return vlen(vsub(point, p1));
+    }
+
+    const norm = vnorm(line);
+    const x1 = point[0];
+    const x2 = norm[0];
+    const x3 = p1[0];
+    const x4 = line[0];
+    const y1 = point[1];
+    const y2 = norm[1];
+    const y3 = p1[1];
+    const y4 = line[1];
+
+    const j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
+
+    if (j < 0 || j > 1) {
+      return Math.min(vlen(vsub(point, p1)), vlen(vsub(point, p2)));
+    }
+
+    const i2 = (y3 + j * y4 - y1) / y2;
+
+    return vlen(vscale(norm, i2));
+  });
+
+  return Math.min.apply(null, dists);
+}
+
 function checkAnswer(userAnswer) {
   console.log('Checking answer');
   const { answers } = currentQuestion;
   let bestMatch = 999999999999;
-  let bestTarget = null;
+  let bestTarget = answers[0];
   answers.forEach((item) => {
     switch (item.type) {
       case 'exact': {
@@ -286,10 +381,25 @@ function checkAnswer(userAnswer) {
         // console.log(distance);
         if (distance < bestMatch) {
           bestMatch = distance;
-          bestTarget = target;
+          bestTarget = item;
         }
         break;
       }
+      case 'polygon':
+        if (isPointInsidePolygon(userAnswer, item.corners) === true) {
+          bestMatch = 0;
+          bestTarget = item;
+        } else {
+          // TODO: Find how far away
+          const polygonArray = item.corners.map((polyItem) => [polyItem.lat, polyItem.lng]);
+          const distance = distanceFromPointToPoly([userAnswer.lat, userAnswer.lng], polygonArray);
+          console.log(distance);
+          // if (distance < bestMatch) {
+          //   bestMatch = distance;
+          //   bestTarget = item;
+          // }
+        }
+        break;
       default: {
         console.error(`Don't understand this type of answer ${item.type}`);
         break;
@@ -329,7 +439,7 @@ function celebrateWithEmoji(points, coords) {
     x: coords.x - Math.round(newEmoji.outerWidth() / 2),
     y: coords.y - MARKER_HEIGHT,
   };
-  console.log(newEmoji.outerWidth());
+  // console.log(newEmoji.outerWidth());
   newEmoji.offset({ top: startLocation.y, left: startLocation.x });
   newEmoji.animate({ top: startLocation.y - EMOJI_ANIMATE_DISTANCE, opacity: 0 }, EMOJI_ANIMATE_TIME, 'linear', () => {
     // Animation complete
@@ -360,8 +470,8 @@ function answerAttemped(latlng, screenCoords) {
 }
 
 function onMapClick(e) {
-  console.log(`You clicked the map at ${e.latlng}`);
-  console.log(e);
+  // console.log(`You clicked the map at ${e.latlng}`);
+  // console.log(e);
   if (waitingForAnswer === true) {
     answerAttemped(e.latlng, e.containerPoint);
   }
