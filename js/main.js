@@ -162,6 +162,7 @@ function showTextAnswer() {
   if (currentQuestion.textAnswer) {
     // textAnswerEl.offset({ top: -100 });
     textAnswerEl.html(MDC.makeHtml(currentQuestion.textAnswer));
+    textAnswerEl.find('a').attr('target', '_blank');
     textAnswerEl.removeClass('hide');
     // textAnswerEl.animate({ top: 0 }, 250, 'swing');
   }
