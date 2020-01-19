@@ -2157,4 +2157,144 @@ const questions = [
       },
     ],
   },
+  {
+    id: 278,
+    question: 'Where is the world\'s most populated city (including metro area)?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: '[Tokyo](https://en.wikipedia.org/wiki/Tokyo), in Japan, has over 35 million people living in it!',
+    answers: [
+      {
+        type: 'exact',
+        lat: 35.6762,
+        lng: 139.6503,
+      },
+    ],
+  },
+  {
+    id: 279,
+    question: 'Where is the world\'s most populated city (excluding metro area)?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: '[Chongqing](https://en.wikipedia.org/wiki/Chongqing), in China, has over 30 million people living in it!',
+    answers: [
+      {
+        type: 'exact',
+        lat: 29.558333,
+        lng: 106.566667,
+      },
+    ],
+  },
+  {
+    id: 280,
+    question: 'Where is the tallest building in the world?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [Burj Khalifa](https://en.wikipedia.org/wiki/Burj_Khalifa) was completed in 2009 and is 830m tall.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 25.197139,
+        lng: 55.274111,
+      },
+    ],
+  },
+  {
+    id: 281,
+    question: 'Where is the tallest building in the western hemisphere?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [One World Trade Center](https://en.wikipedia.org/wiki/One_World_Trade_Center) was completed in 2013 and is 7th tallest in the world at 541m tall. It\'s height in feet (1,776ft) is the year that the US Declaration of Independence was signed.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 40.713,
+        lng: -74.0135,
+      },
+    ],
+  },
+  {
+    id: 282,
+    question: 'Where is the world\'s tallest building with a clock face?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [Abraj Al-Bait](https://en.wikipedia.org/wiki/Abraj_Al_Bait) in Mecca, Saudi Arabia, is the 5th tallest building in the world and was completed in 2011.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 21.418889,
+        lng: 39.826389,
+      },
+    ],
+  },
+  {
+    id: 283,
+    question: 'Where is the tallest building in Europe?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [Lakhta Center](https://en.wikipedia.org/wiki/Lakhta_Center) in St. Petersburg, Russia, is 462m tall and was completed in 2018.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 59.987139,
+        lng: 30.177028,
+      },
+    ],
+  },
+  {
+    id: 284,
+    question: 'Where is the tallest tower in the world?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [Tokyo Skytree](https://en.wikipedia.org/wiki/Tokyo_Skytree) stands at 634m tall and completed in 2012.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 35.7101,
+        lng: 139.8107,
+      },
+    ],
+  },
+  {
+    id: 285,
+    question: 'Where is the tallest tower in the Western Hemisphere?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [CN Tower](https://en.wikipedia.org/wiki/CN_Tower) in Toronto stands at 553m tall and completed in 1976.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 43.6426,
+        lng: -79.3871,
+      },
+    ],
+  },
+  {
+    id: 286,
+    question: 'Where is the tallest tower in Europe?',
+    mapType: 'sat',
+    type: 'trivia',
+    textAnswer: 'The [Ostankino Tower](https://en.wikipedia.org/wiki/Ostankino_Tower) in Moscow, Russia, stands at 540m tall and completed in 1967.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 55.819722,
+        lng: 37.611667,
+      },
+    ],
+  },
+  {
+    id: 280,
+    question: '?',
+    mapType: 'sat',
+    type: 'test',
+    textAnswer: '.',
+    answers: [
+      {
+        type: 'exact',
+        lat: 46.1912,
+        lng: 122.1944,
+      },
+    ],
+  },
 ];
