@@ -1924,7 +1924,7 @@ const questions = [
     question: 'Where did Apollo 11 launch from on its monumental mission?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'Apollo 11 launched from LC-39 at the Kennedy Space Center. It put Neil Armstrong and Buzz Aldrin on the Moon.',
+    textAnswer: '[Apollo 11](https://en.wikipedia.org/wiki/Apollo_11) launched from LC-39 at the [Kennedy Space Center](https://en.wikipedia.org/wiki/Kennedy_Space_Center). It put [Neil Armstrong](https://en.wikipedia.org/wiki/Neil_Armstrong) and [Buzz Aldrin](https://en.wikipedia.org/wiki/Buzz_Aldrin) on the Moon.',
     answers: [
       {
         type: 'exact',
@@ -1938,7 +1938,7 @@ const questions = [
     question: 'Where did the final Space Shuttle mission land in July 2011?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The orbiter Atlantis landed back at the Kennedy Space Center almost 13 days after launch.',
+    textAnswer: 'The [orbiter Atlantis](https://en.wikipedia.org/wiki/Space_Shuttle_Atlantis) landed back at the [Kennedy Space Center](https://en.wikipedia.org/wiki/Kennedy_Space_Center) almost 13 days after launch.',
     answers: [
       {
         type: 'exact',
@@ -1952,7 +1952,7 @@ const questions = [
     question: 'Where did the Sputnik 1 launch from?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The launchpad "Gagarin\'s Start" at Baikonur Cosmodrome is now in modern day Kazakhstan.',
+    textAnswer: 'The launchpad ["Gagarin\'s Start"](https://en.wikipedia.org/wiki/Gagarin%27s_Start) at Baikonur Cosmodrome is now in modern day Kazakhstan.',
     answers: [
       {
         type: 'exact',
@@ -1966,7 +1966,7 @@ const questions = [
     question: 'Where is the Chernobyl Nuclear Facility?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The nuclear disaster at Chernobyl is considered the worst in history.',
+    textAnswer: 'The [nuclear disaster at Chernobyl](https://en.wikipedia.org/wiki/Chernobyl_disaster) is considered the worst in history.',
     answers: [
       {
         type: 'exact',
@@ -1980,7 +1980,7 @@ const questions = [
     question: 'Where was the Battle of Thermopylae fought?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The small Spartan army of 7,000 held the coastal pass against the 100,000 strong Persain army for several days in 480 BC.',
+    textAnswer: 'The small [Spartan army of 7,000 held the coastal pass](https://en.wikipedia.org/wiki/Battle_of_Thermopylae) against the 100,000 strong Persain army for several days in 480 BC.',
     answers: [
       {
         type: 'exact',
@@ -1994,7 +1994,7 @@ const questions = [
     question: 'Where was the Battle of Midway fought?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'Considered a turning point in the Pacific Theatre of World War II.',
+    textAnswer: '[The battle](https://en.wikipedia.org/wiki/Battle_of_Midway) is considered a turning point in the Pacific Theatre of World War II.',
     answers: [
       {
         type: 'exact',
@@ -2008,7 +2008,7 @@ const questions = [
     question: 'Where was the attack on Pearl Habor?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The attack by Japan resulted in the United States joining World War II.',
+    textAnswer: '[The attack by Japan](https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor) resulted in the United States joining World War II.',
     answers: [
       {
         type: 'exact',
@@ -2022,7 +2022,7 @@ const questions = [
     question: 'Where is Mount Vesuvius?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'Its eruption in AD 79 killed more than 1,000 people. Over 600,000 people still live in the danger zone.',
+    textAnswer: '[Vesuvius\'](https://en.wikipedia.org/wiki/Mount_Vesuvius) eruption in AD 79 killed more than 1,000 people. Over 600,000 people still live in the danger zone.',
     answers: [
       {
         type: 'exact',
@@ -2036,7 +2036,7 @@ const questions = [
     question: 'Where was the epicentre of the most powerful earthquake every recorded?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The earthquake resulted in tsunamis travelling half way across the world.',
+    textAnswer: 'The [1960 earthquake in Chile](https://en.wikipedia.org/wiki/1960_Valdivia_earthquake) resulted in tsunamis travelling half way across the world.',
     answers: [
       {
         type: 'exact',
@@ -2050,7 +2050,7 @@ const questions = [
     question: 'Where was the Olympic games that saw the first Fosbury Flop?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'Dick Fosbury starting using the now widespread method in 1968 after failing to succeed with existing methods.',
+    textAnswer: '[Dick Fosbury](https://en.wikipedia.org/wiki/Dick_Fosbury) starting using the now widespread method in 1968 after failing to succeed with existing methods.',
     answers: [
       {
         type: 'exact',
@@ -2064,7 +2064,7 @@ const questions = [
     question: 'Where were the 1992 Summer Olympics hosted?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The Unified Team, consisting of several former Soviet republics, won the most Gold medals and total medals.',
+    textAnswer: '[The Unified Team](https://en.wikipedia.org/wiki/Unified_Team_at_the_1992_Summer_Olympics), consisting of several former Soviet republics, won the most Gold medals and total medals.',
     answers: [
       {
         type: 'exact',
@@ -2078,7 +2078,7 @@ const questions = [
     question: 'What was the destination of the ferry involved in deadliest peacetime maritime disaster?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'The MV Doña Paz collided with the oil tanker MT Vector in 1987 on its way to the Philippine capital of Manila.',
+    textAnswer: 'The [MV Doña Paz](https://en.wikipedia.org/wiki/MV_Do%C3%B1a_Paz) collided with the oil tanker MT Vector in 1987 on its way to the Philippine capital of Manila.',
     answers: [
       {
         type: 'exact',
@@ -2092,7 +2092,7 @@ const questions = [
     question: 'Where is Krakatoa, the huge volcano that erupted in 1883?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'It is said to have dropped the global temperature by 0.5C.',
+    textAnswer: '[The eruption](https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa) is said to have dropped the global temperature by 0.5C.',
     answers: [
       {
         type: 'exact',
@@ -2106,7 +2106,7 @@ const questions = [
     question: 'Where was the Battle of the Bulge?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'It was the largest and bloodiest battle fought by the United States in World War II.',
+    textAnswer: 'The [Battle of the Bulge](https://en.wikipedia.org/wiki/Battle_of_the_Bulge) was the largest and bloodiest battle fought by the United States in World War II.',
     answers: [
       {
         type: 'exact',
@@ -2120,7 +2120,7 @@ const questions = [
     question: 'Where was US President John F. Kennedy when he was assassinated?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'JFK was assassinated while riding a motorcade in Dallas, tTexas.',
+    textAnswer: '[JFK](https://en.wikipedia.org/wiki/John_F._Kennedy) was assassinated while riding a motorcade in Dallas, tTexas.',
     answers: [
       {
         type: 'exact',
@@ -2134,7 +2134,7 @@ const questions = [
     question: 'Where was US President Abraham Lincoln when he was assassinated?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'He was the first US president to be assassinated. He was attending a play at Ford\'s Theatre in Washington D.C.',
+    textAnswer: '[Abraham Lincoln](https://en.wikipedia.org/wiki/Abraham_Lincoln) was the first US president to be assassinated. He was attending a play at Ford\'s Theatre in Washington D.C.',
     answers: [
       {
         type: 'exact',
@@ -2148,7 +2148,7 @@ const questions = [
     question: 'Where was the deadliest volcanic eruption in United States history?',
     mapType: 'sat',
     type: 'trivia',
-    textAnswer: 'Mount St. Helens\' deadly eruption was in 1980 and caused over $1 billion in damages, in 1980s money.',
+    textAnswer: '[Mount St. Helens\'](https://en.wikipedia.org/wiki/Mount_St._Helens) deadly eruption was in 1980 and caused over $1 billion in damages, in 1980s money.',
     answers: [
       {
         type: 'exact',
