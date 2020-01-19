@@ -23,6 +23,8 @@ const countdownTimerEl = $('#countdownTimer');
 const countdownWrapperEl = $('#countdownWrapper');
 const countdownSideWrapperEl = $('#countdownSideWrapper');
 
+const MDC = new showdown.Converter();
+
 // State management
 let waitingForAnswer = false;
 let lastMapType = null;
@@ -159,7 +161,7 @@ function cleanMap() {
 function showTextAnswer() {
   if (currentQuestion.textAnswer) {
     // textAnswerEl.offset({ top: -100 });
-    textAnswerEl.text(currentQuestion.textAnswer);
+    textAnswerEl.html(MDC.makeHtml(currentQuestion.textAnswer));
     textAnswerEl.removeClass('hide');
     // textAnswerEl.animate({ top: 0 }, 250, 'swing');
   }
