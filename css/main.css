@@ -15,13 +15,25 @@
   position: absolute;
 }
 
+#question {
+  opacity: 1;
+  top: 0;
+  transition: all 250ms;
+  visibility: visible;
+}
+#question.hide {
+  opacity: 0;
+  pointer-events: none;
+  top: -200px;
+  visibility: hidden;
+}
+
 #textAnswer {
   opacity: 1;
   top: 0;
   transition: all 250ms;
   visibility: visible;
 }
-
 #textAnswer.hide {
   opacity: 0;
   pointer-events: none;
@@ -35,7 +47,6 @@
   transition: all 250ms;
   visibility: visible;
 }
-
 #countdownSideWrapper.hide {
   opacity: 0;
   pointer-events: none;

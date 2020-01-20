@@ -252,7 +252,7 @@ function answered(points, coords) {
   pointsEl.text(`Total points: ${totalPoints}/${totalPointsMax}`);
   pointsEl.removeClass('hidden');
   showTextAnswer();
-  questionEl.addClass('hidden');
+  questionEl.addClass('hide');
   nextEl.removeClass('hidden');
 }
 
@@ -303,7 +303,7 @@ function askQuestion() {
   resultDistanceEl.addClass('hidden');
   const questionObj = pickRandomQuestion();
   currentQuestion = questionObj;
-  questionEl.text(currentQuestion.question).removeClass('hidden');
+  questionEl.text(currentQuestion.question).removeClass('hide');
   // switchMapType(currentQuestion.mapType);
   waitingForAnswer = true;
   startCountdown();
