@@ -2,18 +2,57 @@ const questionTypes = [
   {
     id: 'trivia',
     name: 'Trivia',
+    mapOptions: {
+      mapMaxZoom: 4,
+      mapMinZoom: 2,
+      mapBounds: [[-90, -180], [90, 180]],
+    },
+    maxPointsThresh: 100000,
+    minPointsThresh: 2500000,
   },
   {
     id: 'cities',
     name: 'Cities of the World',
+    mapOptions: {
+      mapMaxZoom: 4,
+      mapMinZoom: 2,
+      mapBounds: [[-90, -180], [90, 180]],
+    },
+    maxPointsThresh: 100000,
+    minPointsThresh: 2500000,
   },
   {
     id: 'landmarks',
     name: 'Landmarks',
+    mapOptions: {
+      mapMaxZoom: 4,
+      mapMinZoom: 2,
+      mapBounds: [[-90, -180], [90, 180]],
+    },
+    maxPointsThresh: 100000,
+    minPointsThresh: 2500000,
+  },
+  {
+    id: 'ukcities',
+    name: 'Cities of the UK',
+    mapOptions: {
+      mapMaxZoom: 7,
+      mapMinZoom: 4,
+      mapBounds: [[49.09, -8.83], [61.66, 2.56]],
+    },
+    maxPointsThresh: 50000,
+    minPointsThresh: 150000,
   },
   {
     id: 'test',
     name: 'Test',
+    mapOptions: {
+      mapMaxZoom: 4,
+      mapMinZoom: 2,
+      mapBounds: [[-90, -180], [90, 180]],
+    },
+    maxPointsThresh: 100000,
+    minPointsThresh: 2500000,
   },
 ];
 
@@ -2284,7 +2323,7 @@ const questions = [
     ],
   },
   {
-    id: 280,
+    id: 287,
     question: '?',
     mapType: 'sat',
     type: 'test',
@@ -2296,5 +2335,698 @@ const questions = [
         lng: 122.1944,
       },
     ],
+  },
+  {
+    id: 288, question: 'Where is London?', answers: [{ type: 'exact', lat: 51.514248, lng: -0.093145 }], type: 'ukcities',
+  },
+  {
+    id: 289, question: 'Where is Birmingham?', answers: [{ type: 'exact', lat: 52.466667, lng: -1.916667 }], type: 'ukcities',
+  },
+  {
+    id: 290, question: 'Where is Manchester?', answers: [{ type: 'exact', lat: 53.5, lng: -2.216667 }], type: 'ukcities',
+  },
+  {
+    id: 291, question: 'Where is Leeds?', answers: [{ type: 'exact', lat: 53.8, lng: -1.583333 }], type: 'ukcities',
+  },
+  {
+    id: 292, question: 'Where is Sheffield?', answers: [{ type: 'exact', lat: 53.366667, lng: -1.5 }], type: 'ukcities',
+  },
+  {
+    id: 293, question: 'Where is Glasgow?', answers: [{ type: 'exact', lat: 55.833333, lng: -4.25 }], type: 'ukcities',
+  },
+  {
+    id: 294, question: 'Where is Newcastle upon Tyne?', answers: [{ type: 'exact', lat: 54.988056, lng: -1.619444 }], type: 'ukcities',
+  },
+  {
+    id: 295, question: 'Where is Nottingham?', answers: [{ type: 'exact', lat: 52.966667, lng: -1.166667 }], type: 'ukcities',
+  },
+  {
+    id: 296, question: 'Where is Liverpool?', answers: [{ type: 'exact', lat: 53.416667, lng: -3 }], type: 'ukcities',
+  },
+  {
+    id: 297, question: 'Where is Southend-on-Sea?', answers: [{ type: 'exact', lat: 51.533333, lng: 0.7 }], type: 'ukcities',
+  },
+  {
+    id: 298, question: 'Where is Bristol?', answers: [{ type: 'exact', lat: 51.45, lng: -2.583333 }], type: 'ukcities',
+  },
+  {
+    id: 299, question: 'Where is Edinburgh?', answers: [{ type: 'exact', lat: 55.95, lng: -3.2 }], type: 'ukcities',
+  },
+  {
+    id: 300, question: 'Where is Brighton?', answers: [{ type: 'exact', lat: 50.833333, lng: -0.15 }], type: 'ukcities',
+  },
+  {
+    id: 301, question: 'Where is Bradford?', answers: [{ type: 'exact', lat: 53.783333, lng: -1.75 }], type: 'ukcities',
+  },
+  {
+    id: 302, question: 'Where is Leicester?', answers: [{ type: 'exact', lat: 52.633333, lng: -1.133333 }], type: 'ukcities',
+  },
+  {
+    id: 303, question: 'Where is Sunderland?', answers: [{ type: 'exact', lat: 54.911944, lng: -1.383333 }], type: 'ukcities',
+  },
+  {
+    id: 304, question: 'Where is Belfast?', answers: [{ type: 'exact', lat: 54.6, lng: -5.933333 }], type: 'ukcities',
+  },
+  {
+    id: 305, question: 'Where is Portsmouth?', answers: [{ type: 'exact', lat: 50.766667, lng: -1.083333 }], type: 'ukcities',
+  },
+  {
+    id: 306, question: 'Where is Bournemouth?', answers: [{ type: 'exact', lat: 50.716667, lng: -1.883333 }], type: 'ukcities',
+  },
+  {
+    id: 307, question: 'Where is Middlesbrough?', answers: [{ type: 'exact', lat: 54.572778, lng: -1.162778 }], type: 'ukcities',
+  },
+  {
+    id: 308, question: 'Where is Coventry?', answers: [{ type: 'exact', lat: 52.416667, lng: -1.55 }], type: 'ukcities',
+  },
+  {
+    id: 309, question: 'Where is Southampton?', answers: [{ type: 'exact', lat: 50.9, lng: -1.4 }], type: 'ukcities',
+  },
+  {
+    id: 310, question: 'Where is Reading?', answers: [{ type: 'exact', lat: 51.433333, lng: -1 }], type: 'ukcities',
+  },
+  {
+    id: 311, question: 'Where is Sutton on Hull?', answers: [{ type: 'exact', lat: 53.783333, lng: -0.316667 }], type: 'ukcities',
+  },
+  {
+    id: 312, question: 'Where is Blackpool?', answers: [{ type: 'exact', lat: 53.816667, lng: -3.05 }], type: 'ukcities',
+  },
+  {
+    id: 313, question: 'Where is Plymouth?', answers: [{ type: 'exact', lat: 50.396389, lng: -4.138611 }], type: 'ukcities',
+  },
+  {
+    id: 314, question: 'Where is Luton?', answers: [{ type: 'exact', lat: 51.883333, lng: -0.416667 }], type: 'ukcities',
+  },
+  {
+    id: 315, question: 'Where is Oxford?', answers: [{ type: 'exact', lat: 51.75, lng: -1.25 }], type: 'ukcities',
+  },
+  {
+    id: 316, question: 'Where is Norwich?', answers: [{ type: 'exact', lat: 52.633333, lng: 1.3 }], type: 'ukcities',
+  },
+  {
+    id: 317, question: 'Where is Old Aberdeen?', answers: [{ type: 'exact', lat: 57.166667, lng: -2.1 }], type: 'ukcities',
+  },
+  {
+    id: 318, question: 'Where is York?', answers: [{ type: 'exact', lat: 53.966667, lng: -1.083333 }], type: 'ukcities',
+  },
+  {
+    id: 319, question: 'Where is Dundee?', answers: [{ type: 'exact', lat: 56.5, lng: -2.966667 }], type: 'ukcities',
+  },
+  {
+    id: 320, question: 'Where is Ipswich?', answers: [{ type: 'exact', lat: 52.083333, lng: 1.166667 }], type: 'ukcities',
+  },
+  {
+    id: 321, question: 'Where is Peterborough?', answers: [{ type: 'exact', lat: 52.583333, lng: -0.25 }], type: 'ukcities',
+  },
+  {
+    id: 322, question: 'Where is Cambridge?', answers: [{ type: 'exact', lat: 52.2, lng: 0.116667 }], type: 'ukcities',
+  },
+  {
+    id: 323, question: 'Where is Exminster?', answers: [{ type: 'exact', lat: 50.683333, lng: -3.483333 }], type: 'ukcities',
+  },
+  {
+    id: 324, question: 'Where is Bath?', answers: [{ type: 'exact', lat: 51.379444, lng: -2.365556 }], type: 'ukcities',
+  },
+  {
+    id: 325, question: 'Where is Chester?', answers: [{ type: 'exact', lat: 53.2, lng: -2.916667 }], type: 'ukcities',
+  },
+  {
+    id: 326, question: 'Where is Greenock?', answers: [{ type: 'exact', lat: 55.933333, lng: -4.75 }], type: 'ukcities',
+  },
+  {
+    id: 327, question: 'Where is Carlisle?', answers: [{ type: 'exact', lat: 54.883333, lng: -2.933333 }], type: 'ukcities',
+  },
+  {
+    id: 328, question: 'Where is Scarborough?', answers: [{ type: 'exact', lat: 54.287222, lng: -0.414167 }], type: 'ukcities',
+  },
+  {
+    id: 329, question: 'Where is Ayr?', answers: [{ type: 'exact', lat: 55.45, lng: -4.616667 }], type: 'ukcities',
+  },
+  {
+    id: 330, question: 'Where is Inverness?', answers: [{ type: 'exact', lat: 57.466667, lng: -4.233333 }], type: 'ukcities',
+  },
+  {
+    id: 331, question: 'Where is Perth?', answers: [{ type: 'exact', lat: 56.4, lng: -3.433333 }], type: 'ukcities',
+  },
+  {
+    id: 332, question: 'Where is River?', answers: [{ type: 'exact', lat: 51.133333, lng: 1.266667 }], type: 'ukcities',
+  },
+  {
+    id: 333, question: 'Where is Dumfries?', answers: [{ type: 'exact', lat: 55.066667, lng: -3.55 }], type: 'ukcities',
+  },
+  {
+    id: 334, question: 'Where is Omagh?', answers: [{ type: 'exact', lat: 54.60124, lng: -7.29085 }], type: 'ukcities',
+  },
+  {
+    id: 335, question: 'Where is Penzance?', answers: [{ type: 'exact', lat: 50.113611, lng: -5.547778 }], type: 'ukcities',
+  },
+  {
+    id: 336, question: 'Where is Fort William?', answers: [{ type: 'exact', lat: 56.816667, lng: -5.116667 }], type: 'ukcities',
+  },
+  {
+    id: 337, question: 'Where is Kirkwall?', answers: [{ type: 'exact', lat: 58.966667, lng: -2.95 }], type: 'ukcities',
+  },
+  {
+    id: 338, question: 'Where is Wick?', answers: [{ type: 'exact', lat: 58.433333, lng: -3.083333 }], type: 'ukcities',
+  },
+  {
+    id: 339, question: 'Where is Lerwick?', answers: [{ type: 'exact', lat: 60.15, lng: -1.15 }], type: 'ukcities',
+  },
+  {
+    id: 340, question: 'Where is Ilford?', answers: [{ type: 'exact', lat: 51.559666, lng: 0.070805 }], type: 'ukcities',
+  },
+  {
+    id: 341, question: 'Where is Chelmsford?', answers: [{ type: 'exact', lat: 51.733333, lng: 0.483333 }], type: 'ukcities',
+  },
+  {
+    id: 342, question: 'Where is Weston-super-Mare?', answers: [{ type: 'exact', lat: 51.345833, lng: -2.967778 }], type: 'ukcities',
+  },
+  {
+    id: 343, question: 'Where is Llangefni?', answers: [{ type: 'exact', lat: 53.266667, lng: -4.333333 }], type: 'ukcities',
+  },
+  {
+    id: 344, question: 'Where is Southport?', answers: [{ type: 'exact', lat: 53.666667, lng: -3 }], type: 'ukcities',
+  },
+  {
+    id: 345, question: 'Where is Armagh?', answers: [{ type: 'exact', lat: 54.34812, lng: -6.64957 }], type: 'ukcities',
+  },
+  {
+    id: 346, question: 'Where is Rochester?', answers: [{ type: 'exact', lat: 51.383333, lng: 0.516667 }], type: 'ukcities',
+  },
+  {
+    id: 347, question: 'Where is Rochdale?', answers: [{ type: 'exact', lat: 53.616667, lng: -2.15 }], type: 'ukcities',
+  },
+  {
+    id: 348, question: 'Where is Motherwell?', answers: [{ type: 'exact', lat: 55.783333, lng: -4 }], type: 'ukcities',
+  },
+  {
+    id: 349, question: 'Where is Clydach Vale?', answers: [{ type: 'exact', lat: 51.626667, lng: -3.476111 }], type: 'ukcities',
+  },
+  {
+    id: 350, question: 'Where is Kirkintilloch?', answers: [{ type: 'exact', lat: 55.916667, lng: -4.166667 }], type: 'ukcities',
+  },
+  {
+    id: 351, question: 'Where is Stirling?', answers: [{ type: 'exact', lat: 56.116667, lng: -3.95 }], type: 'ukcities',
+  },
+  {
+    id: 352, question: 'Where is Lambeth?', answers: [{ type: 'exact', lat: 51.5, lng: -0.116667 }], type: 'ukcities',
+  },
+  {
+    id: 353, question: 'Where is Dungannon?', answers: [{ type: 'exact', lat: 54.50333, lng: -6.76427 }], type: 'ukcities',
+  },
+  {
+    id: 354, question: 'Where is Huddersfield?', answers: [{ type: 'exact', lat: 53.65, lng: -1.783333 }], type: 'ukcities',
+  },
+  {
+    id: 355, question: 'Where is Stretford?', answers: [{ type: 'exact', lat: 53.45, lng: -2.316667 }], type: 'ukcities',
+  },
+  {
+    id: 356, question: 'Where is Preston?', answers: [{ type: 'exact', lat: 53.766667, lng: -2.716667 }], type: 'ukcities',
+  },
+  {
+    id: 357, question: 'Where is Newbury?', answers: [{ type: 'exact', lat: 51.4, lng: -1.316667 }], type: 'ukcities',
+  },
+  {
+    id: 358, question: 'Where is Rhuthun?', answers: [{ type: 'exact', lat: 53.116667, lng: -3.3 }], type: 'ukcities',
+  },
+  {
+    id: 359, question: 'Where is Blackburn?', answers: [{ type: 'exact', lat: 53.75, lng: -2.483333 }], type: 'ukcities',
+  },
+  {
+    id: 360, question: 'Where is Wood Green?', answers: [{ type: 'exact', lat: 51.6, lng: -0.116667 }], type: 'ukcities',
+  },
+  {
+    id: 361, question: 'Where is Stafford?', answers: [{ type: 'exact', lat: 52.8, lng: -2.1 }], type: 'ukcities',
+  },
+  {
+    id: 362, question: 'Where is Gloucester?', answers: [{ type: 'exact', lat: 51.833333, lng: -2.25 }], type: 'ukcities',
+  },
+  {
+    id: 363, question: 'Where is Glenrothes?', answers: [{ type: 'exact', lat: 56.2, lng: -3.183333 }], type: 'ukcities',
+  },
+  {
+    id: 364, question: 'Where is South Bank?', answers: [{ type: 'exact', lat: 54.566667, lng: -1.15 }], type: 'ukcities',
+  },
+  {
+    id: 365, question: 'Where is Pont-y-pŵl?', answers: [{ type: 'exact', lat: 51.701111, lng: -3.044444 }], type: 'ukcities',
+  },
+  {
+    id: 366, question: 'Where is Durham?', answers: [{ type: 'exact', lat: 54.766667, lng: -1.566667 }], type: 'ukcities',
+  },
+  {
+    id: 367, question: 'Where is Bedford?', answers: [{ type: 'exact', lat: 52.133333, lng: -0.45 }], type: 'ukcities',
+  },
+  {
+    id: 368, question: 'Where is Taunton?', answers: [{ type: 'exact', lat: 51.021111, lng: -3.104722 }], type: 'ukcities',
+  },
+  {
+    id: 369, question: 'Where is Widnes?', answers: [{ type: 'exact', lat: 53.35, lng: -2.733333 }], type: 'ukcities',
+  },
+  {
+    id: 370, question: 'Where is Uxbridge?', answers: [{ type: 'exact', lat: 51.55, lng: -0.483333 }], type: 'ukcities',
+  },
+  {
+    id: 371, question: 'Where is Elgin?', answers: [{ type: 'exact', lat: 57.65, lng: -3.333333 }], type: 'ukcities',
+  },
+  {
+    id: 372, question: 'Where is Hove?', answers: [{ type: 'exact', lat: 50.833333, lng: -0.183333 }], type: 'ukcities',
+  },
+  {
+    id: 373, question: 'Where is Lewes?', answers: [{ type: 'exact', lat: 50.866667, lng: -0.016667 }], type: 'ukcities',
+  },
+  {
+    id: 374, question: 'Where is Maidstone?', answers: [{ type: 'exact', lat: 51.266667, lng: 0.516667 }], type: 'ukcities',
+  },
+  {
+    id: 375, question: 'Where is Llandrindod Wells?', answers: [{ type: 'exact', lat: 52.233333, lng: -3.383333 }], type: 'ukcities',
+  },
+  {
+    id: 376, question: 'Where is Kingston upon Hull?', answers: [{ type: 'exact', lat: 53.716667, lng: -0.333333 }], type: 'ukcities',
+  },
+  {
+    id: 377, question: 'Where is Kingston upon Thames?', answers: [{ type: 'exact', lat: 51.416667, lng: -0.283333 }], type: 'ukcities',
+  },
+  {
+    id: 378, question: 'Where is Barri?', answers: [{ type: 'exact', lat: 51.406667, lng: -3.269444 }], type: 'ukcities',
+  },
+  {
+    id: 379, question: 'Where is Giffnock?', answers: [{ type: 'exact', lat: 55.8, lng: -4.283333 }], type: 'ukcities',
+  },
+  {
+    id: 380, question: 'Where is Hounslow?', answers: [{ type: 'exact', lat: 51.466667, lng: -0.35 }], type: 'ukcities',
+  },
+  {
+    id: 381, question: 'Where is Derry?', answers: [{ type: 'exact', lat: 54.99899, lng: -7.31063 }], type: 'ukcities',
+  },
+  {
+    id: 382, question: 'Where is Newtownabbey?', answers: [{ type: 'exact', lat: 54.66912, lng: -5.904435 }], type: 'ukcities',
+  },
+  {
+    id: 383, question: 'Where is Forfar?', answers: [{ type: 'exact', lat: 56.65, lng: -2.883333 }], type: 'ukcities',
+  },
+  {
+    id: 384, question: 'Where is Torquay?', answers: [{ type: 'exact', lat: 50.45, lng: -3.5 }], type: 'ukcities',
+  },
+  {
+    id: 385, question: 'Where is East Ham?', answers: [{ type: 'exact', lat: 51.533333, lng: 0.05 }], type: 'ukcities',
+  },
+  {
+    id: 386, question: 'Where is Solihull?', answers: [{ type: 'exact', lat: 52.416667, lng: -1.783333 }], type: 'ukcities',
+  },
+  {
+    id: 387, question: 'Where is Poplar?', answers: [{ type: 'exact', lat: 51.5, lng: -0.016667 }], type: 'ukcities',
+  },
+  {
+    id: 388, question: 'Where is Mold?', answers: [{ type: 'exact', lat: 53.166667, lng: -3.133333 }], type: 'ukcities',
+  },
+  {
+    id: 389, question: 'Where is Warwick?', answers: [{ type: 'exact', lat: 52.283333, lng: -1.583333 }], type: 'ukcities',
+  },
+  {
+    id: 390, question: 'Where is Knowsley?', answers: [{ type: 'exact', lat: 53.45, lng: -2.85 }], type: 'ukcities',
+  },
+  {
+    id: 391, question: 'Where is Hwlffordd?', answers: [{ type: 'exact', lat: 51.801667, lng: -4.970833 }], type: 'ukcities',
+  },
+  {
+    id: 392, question: 'Where is Rotherham?', answers: [{ type: 'exact', lat: 53.433333, lng: -1.35 }], type: 'ukcities',
+  },
+  {
+    id: 393, question: 'Where is Caernarfon?', answers: [{ type: 'exact', lat: 53.15, lng: -4.266667 }], type: 'ukcities',
+  },
+  {
+    id: 394, question: 'Where is Morpeth?', answers: [{ type: 'exact', lat: 55.166667, lng: -1.683333 }], type: 'ukcities',
+  },
+  {
+    id: 395, question: 'Where is Irvine?', answers: [{ type: 'exact', lat: 55.6, lng: -4.666667 }], type: 'ukcities',
+  },
+  {
+    id: 396, question: 'Where is Cwmbran?', answers: [{ type: 'exact', lat: 51.653056, lng: -3.026667 }], type: 'ukcities',
+  },
+  {
+    id: 397, question: 'Where is Stornoway?', answers: [{ type: 'exact', lat: 58.216667, lng: -6.366667 }], type: 'ukcities',
+  },
+  {
+    id: 398, question: 'Where is Darlington?', answers: [{ type: 'exact', lat: 54.533333, lng: -1.566667 }], type: 'ukcities',
+  },
+  {
+    id: 399, question: 'Where is Hackney?', answers: [{ type: 'exact', lat: 51.55, lng: -0.05 }], type: 'ukcities',
+  },
+  {
+    id: 400, question: 'Where is Trowbridge?', answers: [{ type: 'exact', lat: 51.318889, lng: -2.208611 }], type: 'ukcities',
+  },
+  {
+    id: 401, question: 'Where is Merthyr Tudful?', answers: [{ type: 'exact', lat: 51.75, lng: -3.383333 }], type: 'ukcities',
+  },
+  {
+    id: 402, question: 'Where is Hertford?', answers: [{ type: 'exact', lat: 51.8, lng: -0.066667 }], type: 'ukcities',
+  },
+  {
+    id: 403, question: 'Where is Newry?', answers: [{ type: 'exact', lat: 54.17795, lng: -6.33807 }], type: 'ukcities',
+  },
+  {
+    id: 404, question: 'Where is Belfast?', answers: [{ type: 'exact', lat: 54.59682, lng: -5.92541 }], type: 'ukcities',
+  },
+  {
+    id: 405, question: 'Where is Camberwell?', answers: [{ type: 'exact', lat: 51.473619, lng: -0.091618 }], type: 'ukcities',
+  },
+  {
+    id: 406, question: 'Where is Caerfyrddin?', answers: [{ type: 'exact', lat: 51.859167, lng: -4.311667 }], type: 'ukcities',
+  },
+  {
+    id: 407, question: 'Where is Cookstown?', answers: [{ type: 'exact', lat: 54.6428, lng: -6.74519 }], type: 'ukcities',
+  },
+  {
+    id: 408, question: 'Where is Dorchester?', answers: [{ type: 'exact', lat: 50.716667, lng: -2.433333 }], type: 'ukcities',
+  },
+  {
+    id: 409, question: 'Where is Port Talbot?', answers: [{ type: 'exact', lat: 51.6, lng: -3.783333 }], type: 'ukcities',
+  },
+  {
+    id: 410, question: 'Where is Antrim?', answers: [{ type: 'exact', lat: 54.71291, lng: -6.20846 }], type: 'ukcities',
+  },
+  {
+    id: 411, question: 'Where is Gateshead?', answers: [{ type: 'exact', lat: 54.945, lng: -1.6175 }], type: 'ukcities',
+  },
+  {
+    id: 412, question: 'Where is Wandsworth?', answers: [{ type: 'exact', lat: 51.45, lng: -0.2 }], type: 'ukcities',
+  },
+  {
+    id: 413, question: 'Where is Exeter?', answers: [{ type: 'exact', lat: 50.7, lng: -3.533333 }], type: 'ukcities',
+  },
+  {
+    id: 414, question: 'Where is Camden Town?', answers: [{ type: 'exact', lat: 51.545664, lng: -0.140308 }], type: 'ukcities',
+  },
+  {
+    id: 415, question: 'Where is Alloa?', answers: [{ type: 'exact', lat: 56.116667, lng: -3.8 }], type: 'ukcities',
+  },
+  {
+    id: 416, question: 'Where is Chicksands?', answers: [{ type: 'exact', lat: 52.033333, lng: -0.366667 }], type: 'ukcities',
+  },
+  {
+    id: 417, question: 'Where is Banbridge?', answers: [{ type: 'exact', lat: 54.35091, lng: -6.26701 }], type: 'ukcities',
+  },
+  {
+    id: 418, question: 'Where is Walthamstow?', answers: [{ type: 'exact', lat: 51.6, lng: -0.033333 }], type: 'ukcities',
+  },
+  {
+    id: 419, question: 'Where is Paisley?', answers: [{ type: 'exact', lat: 55.833333, lng: -4.433333 }], type: 'ukcities',
+  },
+  {
+    id: 420, question: 'Where is Chichester?', answers: [{ type: 'exact', lat: 50.833333, lng: -0.783333 }], type: 'ukcities',
+  },
+  {
+    id: 421, question: 'Where is Craigavon?', answers: [{ type: 'exact', lat: 54.44966, lng: -6.36457 }], type: 'ukcities',
+  },
+  {
+    id: 422, question: 'Where is Woolwich?', answers: [{ type: 'exact', lat: 51.466667, lng: 0.2 }], type: 'ukcities',
+  },
+  {
+    id: 423, question: 'Where is Northallerton?', answers: [{ type: 'exact', lat: 54.333333, lng: -1.433333 }], type: 'ukcities',
+  },
+  {
+    id: 424, question: 'Where is Romford?', answers: [{ type: 'exact', lat: 51.583333, lng: 0.2 }], type: 'ukcities',
+  },
+  {
+    id: 425, question: 'Where is Walsall?', answers: [{ type: 'exact', lat: 52.6, lng: -2 }], type: 'ukcities',
+  },
+  {
+    id: 426, question: 'Where is Scunthorpe?', answers: [{ type: 'exact', lat: 53.583333, lng: -0.65 }], type: 'ukcities',
+  },
+  {
+    id: 427, question: 'Where is Islington?', answers: [{ type: 'exact', lat: 51.533333, lng: -0.1 }], type: 'ukcities',
+  },
+  {
+    id: 428, question: 'Where is Oldbury?', answers: [{ type: 'exact', lat: 52.5, lng: -2.016667 }], type: 'ukcities',
+  },
+  {
+    id: 429, question: 'Where is Downpatrick?', answers: [{ type: 'exact', lat: 54.32694, lng: -5.71134 }], type: 'ukcities',
+  },
+  {
+    id: 430, question: 'Where is Livingston?', answers: [{ type: 'exact', lat: 55.883333, lng: -3.533333 }], type: 'ukcities',
+  },
+  {
+    id: 431, question: 'Where is Ashton-under-Lyne?', answers: [{ type: 'exact', lat: 53.5, lng: -2.1 }], type: 'ukcities',
+  },
+  {
+    id: 432, question: 'Where is Winchester?', answers: [{ type: 'exact', lat: 51.016667, lng: -1.316667 }], type: 'ukcities',
+  },
+  {
+    id: 433, question: 'Where is Sandbach?', answers: [{ type: 'exact', lat: 53.133333, lng: -2.366667 }], type: 'ukcities',
+  },
+  {
+    id: 434, question: 'Where is Derby?', answers: [{ type: 'exact', lat: 52.933333, lng: -1.5 }], type: 'ukcities',
+  },
+  {
+    id: 435, question: 'Where is Twickenham?', answers: [{ type: 'exact', lat: 51.433333, lng: -0.316667 }], type: 'ukcities',
+  },
+  {
+    id: 436, question: 'Where is Saint Helens?', answers: [{ type: 'exact', lat: 53.45, lng: -2.733333 }], type: 'ukcities',
+  },
+  {
+    id: 437, question: 'Where is Bury?', answers: [{ type: 'exact', lat: 53.6, lng: -2.3 }], type: 'ukcities',
+  },
+  {
+    id: 438, question: 'Where is Maidenhead?', answers: [{ type: 'exact', lat: 51.516667, lng: -0.7 }], type: 'ukcities',
+  },
+  {
+    id: 439, question: 'Where is Wembley?', answers: [{ type: 'exact', lat: 51.55, lng: -0.283333 }], type: 'ukcities',
+  },
+  {
+    id: 440, question: 'Where is Hartlepool?', answers: [{ type: 'exact', lat: 54.686111, lng: -1.2125 }], type: 'ukcities',
+  },
+  {
+    id: 441, question: 'Where is Hugh Town?', answers: [{ type: 'exact', lat: 49.914597, lng: -6.314273 }], type: 'ukcities',
+  },
+  {
+    id: 442, question: 'Where is Oldham?', answers: [{ type: 'exact', lat: 53.55, lng: -2.116667 }], type: 'ukcities',
+  },
+  {
+    id: 443, question: 'Where is Bexleyheath?', answers: [{ type: 'exact', lat: 51.45, lng: 0.15 }], type: 'ukcities',
+  },
+  {
+    id: 444, question: 'Where is Ebbw Vale?', answers: [{ type: 'exact', lat: 51.783333, lng: -3.2 }], type: 'ukcities',
+  },
+  {
+    id: 445, question: 'Where is Magherafelt?', answers: [{ type: 'exact', lat: 54.75426, lng: -6.60941 }], type: 'ukcities',
+  },
+  {
+    id: 446, question: 'Where is Wigan?', answers: [{ type: 'exact', lat: 53.533333, lng: -2.616667 }], type: 'ukcities',
+  },
+  {
+    id: 447, question: 'Where is Ballymena?', answers: [{ type: 'exact', lat: 54.86121, lng: -6.27633 }], type: 'ukcities',
+  },
+  {
+    id: 448, question: 'Where is Halifax?', answers: [{ type: 'exact', lat: 53.716667, lng: -1.85 }], type: 'ukcities',
+  },
+  {
+    id: 449, question: 'Where is Stockport?', answers: [{ type: 'exact', lat: 53.4, lng: -2.15 }], type: 'ukcities',
+  },
+  {
+    id: 450, question: 'Where is Stockton-on-Tees?', answers: [{ type: 'exact', lat: 54.583333, lng: -1.416667 }], type: 'ukcities',
+  },
+  {
+    id: 451, question: 'Where is Northampton?', answers: [{ type: 'exact', lat: 52.25, lng: -0.883333 }], type: 'ukcities',
+  },
+  {
+    id: 452, question: 'Where is Grays?', answers: [{ type: 'exact', lat: 51.483333, lng: 0.333333 }], type: 'ukcities',
+  },
+  {
+    id: 453, question: 'Where is Ystrad Mynach?', answers: [{ type: 'exact', lat: 51.640278, lng: -3.243333 }], type: 'ukcities',
+  },
+  {
+    id: 454, question: 'Where is Aberaeron?', answers: [{ type: 'exact', lat: 52.25, lng: -4.25 }], type: 'ukcities',
+  },
+  {
+    id: 455, question: 'Where is Newtown Saint Boswells?', answers: [{ type: 'exact', lat: 55.583333, lng: -2.683333 }], type: 'ukcities',
+  },
+  {
+    id: 456, question: 'Where is Enfield?', answers: [{ type: 'exact', lat: 51.666667, lng: -0.066667 }], type: 'ukcities',
+  },
+  {
+    id: 457, question: 'Where is Stoke-on-Trent?', answers: [{ type: 'exact', lat: 53, lng: -2.183333 }], type: 'ukcities',
+  },
+  {
+    id: 458, question: 'Where is Sutton?', answers: [{ type: 'exact', lat: 51.35, lng: -0.2 }], type: 'ukcities',
+  },
+  {
+    id: 459, question: 'Where is Dudley?', answers: [{ type: 'exact', lat: 52.5, lng: -2.083333 }], type: 'ukcities',
+  },
+  {
+    id: 460, question: 'Where is Wrecsam?', answers: [{ type: 'exact', lat: 53.05, lng: -3 }], type: 'ukcities',
+  },
+  {
+    id: 461, question: 'Where is Aberdeen?', answers: [{ type: 'exact', lat: 57.133333, lng: -2.1 }], type: 'ukcities',
+  },
+  {
+    id: 462, question: 'Where is Bolton?', answers: [{ type: 'exact', lat: 53.583333, lng: -2.433333 }], type: 'ukcities',
+  },
+  {
+    id: 463, question: 'Where is Warrington?', answers: [{ type: 'exact', lat: 53.383333, lng: -2.6 }], type: 'ukcities',
+  },
+  {
+    id: 464, question: 'Where is Salford?', answers: [{ type: 'exact', lat: 53.483333, lng: -2.266667 }], type: 'ukcities',
+  },
+  {
+    id: 465, question: 'Where is Kensington?', answers: [{ type: 'exact', lat: 51.504699, lng: -0.199827 }], type: 'ukcities',
+  },
+  {
+    id: 466, question: 'Where is Doncaster?', answers: [{ type: 'exact', lat: 53.533333, lng: -1.116667 }], type: 'ukcities',
+  },
+  {
+    id: 467, question: 'Where is Swindon?', answers: [{ type: 'exact', lat: 51.516667, lng: -1.783333 }], type: 'ukcities',
+  },
+  {
+    id: 468, question: 'Where is Pen-y-Bont ar Ogwr?', answers: [{ type: 'exact', lat: 51.505833, lng: -3.577222 }], type: 'ukcities',
+  },
+  {
+    id: 469, question: 'Where is Catford?', answers: [{ type: 'exact', lat: 51.45, lng: -0.016667 }], type: 'ukcities',
+  },
+  {
+    id: 470, question: 'Where is Coleraine?', answers: [{ type: 'exact', lat: 55.13489, lng: -6.66873 }], type: 'ukcities',
+  },
+  {
+    id: 471, question: 'Where is Barnsley?', answers: [{ type: 'exact', lat: 53.55, lng: -1.483333 }], type: 'ukcities',
+  },
+  {
+    id: 472, question: 'Where is Caerdydd?', answers: [{ type: 'exact', lat: 51.5, lng: -3.2 }], type: 'ukcities',
+  },
+  {
+    id: 473, question: 'Where is Poole?', answers: [{ type: 'exact', lat: 50.716667, lng: -2 }], type: 'ukcities',
+  },
+  {
+    id: 474, question: 'Where is Bracknell?', answers: [{ type: 'exact', lat: 51.416667, lng: -0.75 }], type: 'ukcities',
+  },
+  {
+    id: 475, question: 'Where is Wakefield?', answers: [{ type: 'exact', lat: 53.7, lng: -1.483333 }], type: 'ukcities',
+  },
+  {
+    id: 476, question: 'Where is Thornbury?', answers: [{ type: 'exact', lat: 51.608889, lng: -2.520278 }], type: 'ukcities',
+  },
+  {
+    id: 477, question: 'Where is Wokingham?', answers: [{ type: 'exact', lat: 51.416667, lng: -0.833333 }], type: 'ukcities',
+  },
+  {
+    id: 478, question: 'Where is Falkirk?', answers: [{ type: 'exact', lat: 56, lng: -3.766667 }], type: 'ukcities',
+  },
+  {
+    id: 479, question: 'Where is Haddington?', answers: [{ type: 'exact', lat: 55.933333, lng: -2.766667 }], type: 'ukcities',
+  },
+  {
+    id: 480, question: 'Where is Abertawe?', answers: [{ type: 'exact', lat: 51.633333, lng: -3.966667 }], type: 'ukcities',
+  },
+  {
+    id: 481, question: 'Where is Beverley?', answers: [{ type: 'exact', lat: 53.833333, lng: -0.416667 }], type: 'ukcities',
+  },
+  {
+    id: 482, question: 'Where is Croydon?', answers: [{ type: 'exact', lat: 51.383333, lng: -0.1 }], type: 'ukcities',
+  },
+  {
+    id: 483, question: 'Where is South Shields?', answers: [{ type: 'exact', lat: 54.987778, lng: -1.421389 }], type: 'ukcities',
+  },
+  {
+    id: 484, question: 'Where is Morden?', answers: [{ type: 'exact', lat: 51.398217, lng: -0.19837 }], type: 'ukcities',
+  },
+  {
+    id: 485, question: 'Where is Lochgilphead?', answers: [{ type: 'exact', lat: 56.033333, lng: -5.416667 }], type: 'ukcities',
+  },
+  {
+    id: 486, question: 'Where is Worcester?', answers: [{ type: 'exact', lat: 52.2, lng: -2.2 }], type: 'ukcities',
+  },
+  {
+    id: 487, question: 'Where is Matlock?', answers: [{ type: 'exact', lat: 53.133333, lng: -1.533333 }], type: 'ukcities',
+  },
+  {
+    id: 488, question: 'Where is Shrewsbury?', answers: [{ type: 'exact', lat: 52.716667, lng: -2.733333 }], type: 'ukcities',
+  },
+  {
+    id: 489, question: 'Where is Truro?', answers: [{ type: 'exact', lat: 50.261667, lng: -5.043333 }], type: 'ukcities',
+  },
+  {
+    id: 490, question: 'Where is Hereford?', answers: [{ type: 'exact', lat: 52.05, lng: -2.716667 }], type: 'ukcities',
+  },
+  {
+    id: 491, question: 'Where is Newport?', answers: [{ type: 'exact', lat: 51.583333, lng: -2.983333 }], type: 'ukcities',
+  },
+  {
+    id: 492, question: 'Where is Oakham?', answers: [{ type: 'exact', lat: 52.666667, lng: -0.733333 }], type: 'ukcities',
+  },
+  {
+    id: 493, question: 'Where is Milton Keynes?', answers: [{ type: 'exact', lat: 52.033333, lng: -0.7 }], type: 'ukcities',
+  },
+  {
+    id: 494, question: 'Where is Dagenham?', answers: [{ type: 'exact', lat: 51.55, lng: 0.166667 }], type: 'ukcities',
+  },
+  {
+    id: 495, question: 'Where is Conwy?', answers: [{ type: 'exact', lat: 53.283333, lng: -3.833333 }], type: 'ukcities',
+  },
+  {
+    id: 496, question: 'Where is Dalkeith?', answers: [{ type: 'exact', lat: 55.866667, lng: -3.066667 }], type: 'ukcities',
+  },
+  {
+    id: 497, question: 'Where is Enniskillen?', answers: [{ type: 'exact', lat: 54.3466, lng: -7.64114 }], type: 'ukcities',
+  },
+  {
+    id: 498, question: 'Where is Hamilton?', answers: [{ type: 'exact', lat: 55.766667, lng: -4.033333 }], type: 'ukcities',
+  },
+  {
+    id: 499, question: 'Where is Hendon?', answers: [{ type: 'exact', lat: 51.6, lng: -0.216667 }], type: 'ukcities',
+  },
+  {
+    id: 500, question: 'Where is Hammersmith?', answers: [{ type: 'exact', lat: 51.5, lng: -0.233333 }], type: 'ukcities',
+  },
+  {
+    id: 501, question: 'Where is Bromley?', answers: [{ type: 'exact', lat: 51.4, lng: 0.05 }], type: 'ukcities',
+  },
+  {
+    id: 502, question: 'Where is Telford?', answers: [{ type: 'exact', lat: 52.633333, lng: -2.5 }], type: 'ukcities',
+  },
+  {
+    id: 503, question: 'Where is Harrow?', answers: [{ type: 'exact', lat: 51.583333, lng: -0.316667 }], type: 'ukcities',
+  },
+  {
+    id: 504, question: 'Where is Ealing?', answers: [{ type: 'exact', lat: 51.488802, lng: -0.30479 }], type: 'ukcities',
+  },
+  {
+    id: 505, question: 'Where is Slough?', answers: [{ type: 'exact', lat: 51.5, lng: -0.583333 }], type: 'ukcities',
+  },
+  {
+    id: 506, question: 'Where is Wolverhampton?', answers: [{ type: 'exact', lat: 52.583333, lng: -2.133333 }], type: 'ukcities',
+  },
+  {
+    id: 507, question: 'Where is Dumbarton?', answers: [{ type: 'exact', lat: 55.95, lng: -4.566667 }], type: 'ukcities',
+  },
+  {
+    id: 508, question: 'Where is Bangor?', answers: [{ type: 'exact', lat: 54.66166, lng: -5.66545 }], type: 'ukcities',
+  },
+  {
+    id: 509, question: 'Where is Wallsend?', answers: [{ type: 'exact', lat: 54.991389, lng: -1.559722 }], type: 'ukcities',
+  },
+  {
+    id: 510, question: 'Where is Strabane?', answers: [{ type: 'exact', lat: 54.8224, lng: -7.46844 }], type: 'ukcities',
+  },
+  {
+    id: 511, question: 'Where is City of Westminster?', answers: [{ type: 'exact', lat: 51.5, lng: -0.116667 }], type: 'ukcities',
+  },
+  {
+    id: 512, question: 'Where is Lincoln?', answers: [{ type: 'exact', lat: 53.233333, lng: -0.533333 }], type: 'ukcities',
+  },
+  {
+    id: 513, question: 'Where is Newport?', answers: [{ type: 'exact', lat: 50.7, lng: -1.3 }], type: 'ukcities',
+  },
+  {
+    id: 514, question: 'Where is Lisburn?', answers: [{ type: 'exact', lat: 54.50991, lng: -6.0404 }], type: 'ukcities',
+  },
+  {
+    id: 515, question: 'Where is Aylesbury?', answers: [{ type: 'exact', lat: 51.816667, lng: -0.8 }], type: 'ukcities',
+  },
+  {
+    id: 516, question: 'Where is Wallasey?', answers: [{ type: 'exact', lat: 53.433333, lng: -3.066667 }], type: 'ukcities',
+  },
+  {
+    id: 517, question: 'Where is Grimsby?', answers: [{ type: 'exact', lat: 53.533333, lng: -0.05 }], type: 'ukcities',
+  },
+  {
+    id: 518, question: 'Where is Kilmarnock?', answers: [{ type: 'exact', lat: 55.633333, lng: -4.533333 }], type: 'ukcities',
   },
 ];
