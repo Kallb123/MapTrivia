@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 const MAX_POINTS = 100; // Maximum awardable points if within threshold
-const MAX_POINTS_THRESHOLD = 100000; // Meters
-const MIN_POINTS_THRESHOLD = 2500000; // Meters
 const MARKER_WIDTH = 40;
 const MARKER_HEIGHT = 40;
 const EMOJI_ANIMATE_TIME = 1500;
@@ -42,11 +40,15 @@ let countdownMax = 10; // Seconds
 let countdownTimer = 0;
 let countdownTimeout = null;
 let countdownInterval = null;
+let maxPointsThreshold = 100000; // Meters
+let minPointsThreshold = 2500000; // Meters
 
 // initialize the map on the "map" div with a given center and zoom
 const map = L.map('map', {
   center: [0, 0],
   zoom: 2,
+  minZoom: 2,
+  maxZoom: 2,
   maxBounds: [[-90, -180], [90, 180]],
   maxBoundsViscosity: 1.0,
   noWrap: true,
@@ -76,16 +78,12 @@ const blueIcon = L.icon({
 
 const streetLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  maxZoom: 4,
-  minZoom: 2,
   id: 'mapbox/streets-v11',
   accessToken: 'pk.eyJ1Ijoia2FsbGIxMjMiLCJhIjoiY2s1YjE5dW5hMHNwNjNscGt6OHRyejE1aSJ9.y-DJdkjTP2fo-Foe9qPUyw',
 });
 
 const satLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  maxZoom: 4,
-  minZoom: 2,
   id: 'mapbox/satellite-v9',
   accessToken: 'pk.eyJ1Ijoia2FsbGIxMjMiLCJhIjoiY2s1YjE5dW5hMHNwNjNscGt6OHRyejE1aSJ9.y-DJdkjTP2fo-Foe9qPUyw',
 });
@@ -175,14 +173,14 @@ function drawComparison(userAnswer, target) {
       answerPoint = L.marker(targetLL, { icon: greenIcon });
       answerPoint.addTo(map);
       answerMin = L.circle(targetLL, {
-        radius: MIN_POINTS_THRESHOLD,
+        radius: minPointsThreshold,
         fillColor: '#0095ff',
         fillOpacity: 0.2,
         opacity: 0,
       });
       answerMin.addTo(map);
       answerMax = L.circle(targetLL, {
-        radius: MAX_POINTS_THRESHOLD,
+        radius: maxPointsThreshold,
         fillColor: '#4ebd00',
         fillOpacity: 0.5,
         opacity: 0,
@@ -314,9 +312,30 @@ function startGame() {
   askQuestion();
 }
 
-function quizTypeSelected() {
+function quizTypeSelected(type) {
   $('#startSelect').addClass('hidden');
+  maxPointsThreshold = type.maxPointsThresh;
+  minPointsThreshold = type.minPointsThresh;
   startGame();
+}
+
+let mapMoveTimeout = null;
+function quizTypeHover(type) {
+  console.log('Hovering!');
+  map.setMaxBounds([[-90, -180], [90, 180]]);
+  map.setMinZoom(0);
+  map.setMaxZoom(20);
+  // map.setView(type.mapCentre, type.mapZoom);
+  // map.setMaxBounds(type.mapBounds);
+  map.fitBounds(type.mapOptions.mapBounds, { maxZoom: type.mapOptions.mapMaxZoom });
+  if (mapMoveTimeout) clearTimeout(mapMoveTimeout);
+  mapMoveTimeout = setTimeout(() => {
+    map.setMinZoom(type.mapOptions.mapMinZoom);
+    map.setMaxZoom(type.mapOptions.mapMaxZoom);
+    map.setMaxBounds(type.mapOptions.mapBounds);
+  }, 300);
+
+  // setTimeout(() => map.setView(type.mapCentre, type.mapZoom), 100);
 }
 
 function difficultySelected() {
@@ -329,7 +348,13 @@ function difficultySelected() {
   $('#startSelect a').click((e) => {
     e.preventDefault();
     quizType = $(e.target).attr('id');
-    quizTypeSelected();
+    const quizTypeObj = questionTypes.find((item) => item.id === quizType);
+    quizTypeSelected(quizTypeObj);
+  });
+  $('#startSelect a').mouseenter((e) => {
+    const hoverQuizTypeID = $(e.target).attr('id');
+    const hoverQuizType = questionTypes.find((item) => item.id === hoverQuizTypeID);
+    quizTypeHover(hoverQuizType);
   });
   $('#startSelect').removeClass('hidden');
 }
@@ -479,14 +504,14 @@ function checkAnswer(userAnswer) {
 }
 
 function distanceToPoints(distance) {
-  if (distance < MAX_POINTS_THRESHOLD) { // 100 km buffer
+  if (distance < maxPointsThreshold) { // 100 km buffer
     return Math.round(MAX_POINTS);
   }
-  if (distance > MIN_POINTS_THRESHOLD) {
+  if (distance > minPointsThreshold) {
     return 0;
   }
-  return Math.round(MAX_POINTS * 0.8 * (1 - (distance - MAX_POINTS_THRESHOLD)
-    / (MIN_POINTS_THRESHOLD - MAX_POINTS_THRESHOLD)));
+  return Math.round(MAX_POINTS * 0.8 * (1 - (distance - maxPointsThreshold)
+    / (minPointsThreshold - maxPointsThreshold)));
 }
 
 function answerAttemped(latlng, screenCoords) {
