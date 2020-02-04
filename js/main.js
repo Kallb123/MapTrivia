@@ -372,6 +372,12 @@ $(() => {
   $('#easy').click((e) => {
     e.preventDefault();
     switchToStreet();
+    countdownMax *= 2;
+    difficultySelected();
+  });
+  $('#medium').click((e) => {
+    e.preventDefault();
+    switchToStreet();
     difficultySelected();
   });
   $('#hard').click((e) => {
@@ -381,6 +387,9 @@ $(() => {
   });
 
   $('#easy').hover(() => {
+    switchMapType('street');
+  });
+  $('#medium').hover(() => {
     switchMapType('street');
   });
   $('#hard').hover(() => {
