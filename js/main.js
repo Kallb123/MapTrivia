@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const MAX_POINTS = 100; // Maximum awardable points if within threshold
+const MAX_POINTS_TIMER_THRESHOLD = 0.5;
 const MARKER_WIDTH = 40;
 const MARKER_HEIGHT = 40;
 const EMOJI_ANIMATE_TIME = 1500;
@@ -42,6 +43,7 @@ let countdownTimeout = null;
 let countdownInterval = null;
 let maxPointsThreshold = 100000; // Meters
 let minPointsThreshold = 2500000; // Meters
+let questionStartTime = null;
 
 // initialize the map on the "map" div with a given center and zoom
 const map = L.map('map', {
@@ -289,6 +291,7 @@ function startCountdown() {
   countdownTimer = countdownMax * 1000 + COUNTDOWN_INTERVAL;
   countdownIntervalCallback();
   countdownInterval = setInterval(countdownIntervalCallback, COUNTDOWN_INTERVAL);
+  questionStartTime = new Date();
 }
 
 function askQuestion() {
@@ -523,14 +526,24 @@ function distanceToPoints(distance) {
     / (minPointsThreshold - maxPointsThreshold)));
 }
 
+function scalePointsToTime(currentPoints, secondsToAnswer) {
+  const secondsAfterThresh = secondsToAnswer - (countdownMax * MAX_POINTS_TIMER_THRESHOLD);
+  if (secondsAfterThresh <= 0) return currentPoints;
+  const x = countdownMax - (countdownMax * MAX_POINTS_TIMER_THRESHOLD);
+  const pointMultiplier = (x - secondsAfterThresh) / x;
+  return Math.round(currentPoints * pointMultiplier);
+}
+
 function answerAttemped(latlng, screenCoords) {
   console.log('Answer attempted');
   // console.log(latlng);
   countdownStop();
+  const secondsToAnswer = (new Date() - questionStartTime) / 1000;
   waitingForAnswer = false;
   const distance = Math.floor(checkAnswer(latlng));
   // console.log(distance);
-  const points = distanceToPoints(distance);
+  let points = distanceToPoints(distance);
+  points = scalePointsToTime(points, secondsToAnswer);
   console.log(`Distance: ${distance}, Points: ${points}`);
   resultDistanceEl.html(`You were ${Math.round(distance / 1000)}km away`);
   resultDistanceEl.removeClass('hidden');
